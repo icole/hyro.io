@@ -1,0 +1,57 @@
+<div class="description">
+  <div class="container">
+    <h1>My Current Art For Sale</h1>
+  </div>
+</div>
+
+<div class="hero what">
+  <div class="transaction-history container">
+    <table>
+      <thead>
+      <th></th>
+      <th>Piece Name</th>
+      <th>Edition</th>
+      <th>My List Price</th>
+      <th>Lowest Listing <br/> (Any Edition)</th>
+      <th>Highest Bid <br/> (Any Edition)</th>
+      <th></th>
+      </thead>
+      <tbody>
+      {{#each model as |offer|}}
+        <tr>
+          <td class="piece-preview"><a {{action 'enlargePiece' offer.artPiece.fullImage}}><img src={{asset-map (concat "assets/images/" offer.artPiece.previewImage ".png")}} alt=""/></a></td>
+          <td>{{offer.artPiece.name}}</td>
+          <td>{{offer.edition}}</td>
+          <td class="value-column">{{format-amount offer.offerAmount}}</td>
+          <td class="value-column">{{format-amount offer.artPiece.lowestOffer}}</td>
+          <td class="value-column">{{format-amount offer.artPiece.highestBid}}</td>
+          <td>
+            <div>
+              <a class="action-button button" onClick={{action 'toggleOfferModal' offer}}>Change</a>
+              <a class="action-button button" onClick={{action 'deleteOffer' offer}}>Delete</a>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+    <div class="nav-buttons">
+      {{#link-to "my-collection" class="button"}}My Collection{{/link-to}}
+    </div>
+  </div>
+</div>
+
+{{enlarge-overlay enlargedImage=enlargedImage}}
+
+{{#ember-cli-spinner id="processing" type="circles"}}
+  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
+{{/ember-cli-spinner}}
+
+{{#if isShowingOfferModal}}
+  {{offer-modal
+    isShowingOfferModal=isShowingOfferModal
+    editionOffered=editionOffered
+    artPiece=pieceOffered
+  }}
+{{/if}}

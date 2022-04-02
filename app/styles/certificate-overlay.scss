@@ -1,0 +1,94 @@
+.overlay.certificate-overlay {
+    background-color: rgba(255, 255, 255, 0.959);
+    background-image: url(images/coa_background.png);
+
+    .bg {
+      background-color: transparent;
+    }
+
+    .description {
+        position: absolute;
+        top: 100px;
+    }
+
+    .description .container {
+        width: 70vw;
+        height: 54.44vw;
+        max-width: none;
+        padding: 0;
+        background-image: url('images/coa_overlay.png');
+        background-color: #FFF;
+        background-size: 100% 100%;
+    }
+
+    .buttons {
+        padding: 50px;
+        .button {
+            background-color: rgb(134, 189, 204);
+            color: white;
+        }
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 80vh;
+    }
+}
+
+#coa-body {
+    padding-top: 33%;
+
+    #coa-header {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        padding-right: 5%;
+        padding-left: 10%;
+        padding-bottom: 20px;
+        font-size: 1vw;
+
+        .coa-header-first {
+            border-right: solid 1px black;
+            padding-right: 15px;
+        }
+
+        .coa-header-second {
+            padding-left: 15px;
+
+            #coa-owner {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .coa-details {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding-right: 5%;
+        padding-left: 10%;
+        padding-top: 5%;
+        font-size: 1vw;
+    }
+
+    #coa-footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 15%;
+        display: flex;
+        text-align: center;
+        text-transform: uppercase;
+
+        .coa-button {
+            background-color: #00205B;
+            color: #FFFFFF;
+            padding: 1em;
+            margin: auto;
+            text-decoration: none;
+            font-size: 1.5vw;
+        }
+
+        .coa-button:hover {
+            cursor: pointer;
+        }
+    }
+}

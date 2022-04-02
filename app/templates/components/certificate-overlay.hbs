@@ -1,0 +1,55 @@
+<div class="overlay certificate-overlay">
+  <div class="bg"></div>
+  <div class="description">
+    <div id="coa-container" class="container">
+      <div id="coa-body">
+        <div id="coa-header">
+          <div class="coa-header-first">
+            <strong>
+              <span>Certificate</span>
+              <br/>
+              <span>Of Authenticity</span>
+            </strong>
+          </div>
+          <div class="coa-header-second">
+            <span>This certificate desinates verifiable ownership to:</span>
+            <br/>
+            <span id="coa-owner">{{edition.owner}}</span>
+          </div>
+        </div> 
+        <div class="coa-details">
+          <div>
+            <strong><span>Piece Title:</span></strong>
+            <br/>
+            <span>{{edition.artPiece.name}}</span>
+          </div>
+          <div>
+            <strong><span>Artist:</span></strong>
+            <br/>
+            <span>{{edition.artPiece.artist}}</span>
+          </div>
+        </div>
+        <div class="coa-details">
+          <div>
+            <strong><span>Edition:</span></strong>
+            <br/>
+            <span>{{edition.edition}}/{{edition.artPiece.editions}}</span>
+          </div>
+          <div>
+            <strong><span>Date:</span></strong>
+            <br/>
+            <span>{{edition.dateDisplay}}</span>
+          </div>
+        </div>
+        <div id="coa-footer">
+          <a href={{edition.ethscanLink}} target="_blank" class="coa-button">
+            View Transaction
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="buttons">
+      <a class="button close">Close</a>
+    </div>
+  </div>
+</div>

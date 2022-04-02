@@ -1,0 +1,22 @@
+<div class="hero what">
+  <div class="container">
+    <div class="img right">
+      <img class="" src="{{edition.artPiece.previewImagePath}}" alt=""/>
+    </div>
+    <div class="content">
+      <h2>{{edition.artPiece.name}}</h2>
+      <h3>{{edition.artPiece.artist}}</h3>
+      <p>{{edition.artPiece.description}}</p>
+      <div class="">
+        <a class="button" style="margin-right: 20px" {{action 'updateDisplay' edition.artPiece}}>Show Piece</a>
+        {{#if isDisplayPiece}}
+          {{#if displayPiece.showDescription}}
+            <a class="button" {{action 'toggleDescription' displayPiece}}>Hide Description</a>
+          {{else}}
+            <a class="button" {{action 'toggleDescription' displayPiece}}>Show Description</a>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

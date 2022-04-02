@@ -1,0 +1,9 @@
+{{#if web3.locked}}
+  {{metamask-locked}}
+{{else if web3.wrongNetwork}}
+  {{metamask-wrong-network}}
+{{else if web3.account}}
+  {{log-in createUser=(action 'createUser') model=model}}
+{{else}}
+  {{metamask-missing}}
+{{/if}}

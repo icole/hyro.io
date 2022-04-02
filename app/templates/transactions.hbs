@@ -1,0 +1,46 @@
+<div class="description">
+  <div class="container">
+    <h1>My Transactions</h1>
+  </div>
+</div>
+
+<div class="hero what">
+  <div class="transaction-history container">
+    <table>
+      <thead>
+      <th></th>
+      <th>Piece Name</th>
+      <th>Edition</th>
+      <th>Action</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th></th>
+      </thead>
+      <tbody>
+      {{#each (sort-by 'createdAt:desc' model) as |transaction|}}
+        <tr>
+          {{#if transaction.artPiece.previewImage}}
+            <td class="piece-preview"><img src={{asset-map (concat "assets/images/" transaction.artPiece.previewImage ".png")}} alt=""/></td>
+          {{/if}}
+          <td>{{transaction.artPiece.name}}</td>
+          <td>{{transaction.edition}}</td>
+          <td>{{transaction.typeDisplay}}</td>
+          <td class="value-column">
+            {{format-amount transaction.amount}}
+          </td>
+          <td>{{transaction.dateDisplay}}</td>
+          <td>
+            <div>
+              <a href={{transaction.ethscanLink}} target="_blank" class="button">View Etherscan</a>
+            </div>
+          </td>
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
+
+    <div class="nav-buttons">
+      {{#link-to "my-collection" class="button"}}My Collection{{/link-to}}
+    </div>
+  </div>
+</div>

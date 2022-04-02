@@ -1,0 +1,148 @@
+.offer-modal {
+
+  .close {
+    float: right;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    padding-right: 10px;
+  }
+
+  .offer-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 2em;
+
+    .offer-info-img {
+      margin-left: 2em;
+      top: 2vh;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    a {
+      color: #353535;
+      text-decoration: none;
+    }
+
+    .offer-info-content {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-left: 7em;
+      padding-right: 3em;
+
+      .offer-edition-content {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .offer-amounts {
+    display: flex;
+
+    .amount-label {
+      font-size: 12px;
+    }
+
+    .offer-amount {
+      flex-grow: 1;
+
+      h3 {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .offer-inputs {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+    .offer-input {
+      margin: auto;
+
+      label {
+        font-weight: bold;
+      }
+
+      .inner-addon {
+        margin-top: 15px;
+      }
+
+      .glyphicon {
+        margin-top: 15px;
+        padding: 5px;
+      }
+
+      input {
+        border: 1px solid #CCCCCC !important;
+        font-size: 24px;
+        max-width: 250px;
+        padding-left: 40px;
+      }
+    }
+  }
+
+  .offer-button {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  .offer-complete {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 768px) {
+  .offer-inputs {
+    grid-template-columns: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ember-modal-dialog {
+    width: 90%;
+    height: 95%;
+    overflow: scroll;
+  }
+
+  .offer-modal {
+
+    .offer-info {
+      grid-template-columns: 100%;
+
+      .offer-info-img {
+        margin: 0;
+        right: 1em;
+      }
+
+      .offer-info-content {
+        margin-top: 1.5em;
+      }
+
+    }
+
+    .offer-input {
+      grid-template-columns: 100%;
+
+      .inner-addon {
+        margin-left: 40px;
+        margin-right: 40px;
+
+        input {
+          width: 100%;
+        }
+      }
+
+      .offer-button {
+        margin: 20px auto 0 auto;
+      }
+    }
+  }
+}
+

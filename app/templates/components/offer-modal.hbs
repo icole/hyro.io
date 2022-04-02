@@ -1,0 +1,121 @@
+{{#modal-dialog onClose="toggleOfferModal"
+                targetAttachment="center"
+                translucentOverlay=true
+                containerClass="offer-modal"
+}}
+  <header class="ember-modal-head">
+    <button class="close" {{action 'toggleOfferModal'}}>x</button>
+  </header>
+  <div class="ember-modal-body">
+    <div class="offer-info">
+      <div class="offer-info-img img">
+        <img src={{asset-map (concat "assets/images/" artPiece.previewImage ".png")}} alt=""/>
+      </div>
+      <div class="offer-info-content">
+        <div class="offer-edition-content">
+          <h2>{{#link-to "art-pieces.show" artPiece.id}}{{artPiece.name}}{{/link-to}}</h2>
+          <h3>{{artPiece.artist}}</h3>
+          {{#if editionOffered}}
+            <h3>Edition: {{editionOffered.edition}}</h3>
+          {{/if}}
+        </div>
+        <div class="offer-amounts">
+          <div class="offer-amount">
+            <h3>My Edition</h3>
+            <div class="offer-amounts">
+              <div class="offer-amount">
+                <span class="eth-amount">{{format-amount editionOffered.highestBid}}</span>
+                <br/>
+                <span class="amount-label">Highest Bid</span>
+              </div>
+              <div class="offer-amount">
+                <span class="eth-amount">{{format-amount editionOffered.offerAmount}}</span>
+                <br/>
+                <span class="amount-label">My Listing</span>
+              </div>
+            </div>
+          </div>
+          <div class="offer-amount">
+            <h3>All Editions</h3>
+            <div class="offer-amounts">
+              <div class="offer-amount">
+                <span class="eth-amount">{{format-amount artPiece.highestBid}}</span>
+                <br/>
+                <span class="amount-label">Highest Bid</span>
+              </div>
+              <div class="offer-amount">
+                <span class="eth-amount">{{format-amount artPiece.lowestOffer}}</span>
+                <br/>
+                <span class="amount-label">Lowest Listing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{#if offerPlaced}}
+          {{#if offerMetBid}}
+            <div class="offer-complete">
+              <p>You have successfully sold your artwork!</p>
+              <p>To see the verified transaction on Etherscan, click below</p>
+              <div class="offer-button">
+                <a href={{ethscanLink}} target="_blank" class = "button">View Transaction</a>
+                <a class="button" {{action "toggleOfferModal"}}>Exit</a>
+              </div>
+            </div>
+          {{else}}
+            <div class="offer-complete">
+              <p>Your listing of {{offerAmount}} ETH has been successfully placed!</p>
+              <p>If the offer is accepted the Artwork will be transferred and the Buyers ETH will be transferred to you.</p>
+              <div class="offer-button">
+                <a class="button" {{action "changeOffer"}}>Change Offer</a>
+              </div>
+            </div>
+          {{/if}}
+        {{else}}
+          {{#unless offerProcessing}}
+            <div class="offer-inputs">
+              <div class="offer-input">
+                <label>List Price</label>
+                <div class="inner-addon left-addon">
+                  <img class="glyphicon" style="height: 22px" src="/assets/images/eth.svg" alt=""/>
+                  {{input
+                    class="form-control"
+                    type="number"
+                    value=offerAmount
+                    min=minOffer
+                    step="0.05"
+                    key-down="restrictAmount"
+                    key-up="validateAmount"
+                  }}
+                </div>
+              </div>
+              <div class="offer-input">
+                <label>Payout</label>
+                <div class="inner-addon left-addon">
+                  <img class="glyphicon" style="height: 22px" src="/assets/images/eth.svg" alt=""/>
+                  {{input
+                    class="form-control"
+                    type="number"
+                    disabled="disabled"
+                    value=calculatedPayout
+                    min=0
+                  }}
+                </div>
+              </div>
+            </div>
+            <div class="offer-button">
+              {{#if offerMetBid}}
+                <a class="button" {{action "placeOffer"}}>Sell Now</a>
+              {{else}}
+                <a class="button" {{action "placeOffer"}}>Place Listing</a>
+              {{/if}}
+            </div>
+          {{/unless}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{/modal-dialog}}
+
+{{#ember-cli-spinner id="offer-processing" type="circles"}}
+  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
+{{/ember-cli-spinner}}

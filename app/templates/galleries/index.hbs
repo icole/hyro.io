@@ -1,0 +1,28 @@
+ <div class="description">
+  <div class="container">
+    <h1>Browse Galleries</h1>
+    <p>
+      Search for your favorite galleries or explore new ones.
+    </p>
+  </div>
+</div>
+
+{{#each model as |gallery|}}
+  <div class="hero what">
+    <div class="gallery-container container">
+      <div class="img right">
+        <img src={{gallery.imageUrl}} alt=""/>
+      </div>
+      <div class="content">
+        <h2>{{gallery.name}}</h2>
+        <h3>{{gallery.location}}</h3>
+        <p>{{gallery.description}}</p>
+        <div class="release">
+          <div>
+            {{#link-to "galleries.show" gallery.id class="button"}}View Gallery Pieces{{/link-to}}
+          </div>
+        </div>    
+      </div>
+    </div>
+  </div>
+{{/each}}

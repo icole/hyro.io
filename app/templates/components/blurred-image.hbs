@@ -1,0 +1,12 @@
+  <svg class="blur">
+    <image filter="url(#filter2)" href={{asset-map (concat "assets/images/" model.previewImage ".png")}} width="100%" height="100%"></image>
+    <filter id="filter2">
+      <feGaussianBlur stdDeviation="5" />
+    </filter>
+    {{#unless blurOnly}}
+      <mask id="mask1">
+        <circle r="90" fill="white" filter="url(#filter2)" />
+      </mask>
+      <image href={{asset-map (concat "assets/images/" model.previewImage ".png")}} width="100%" height="100%" mask="url(#mask1)"></image>
+    {{/unless}}
+  </svg>

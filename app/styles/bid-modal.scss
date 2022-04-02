@@ -1,0 +1,127 @@
+.bid-modal {
+
+  .close {
+    float: right;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    padding-right: 10px;
+  }
+
+  .bid-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 2em;
+
+    .bid-info-img {
+      margin-left: 2em;
+      top: 2vh;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    a {
+      color: #353535;
+      text-decoration: none;
+    }
+
+    .bid-info-content {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-left: 7em;
+      padding-right: 3em;
+
+      .bid-edition-content {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .bid-amounts {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bid-complete {
+    margin-top: 20px;
+
+    .bid-again-button {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+
+  .bid-input {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
+    .inner-addon {
+      margin-left: auto;
+
+      .glyphicon {
+        margin-top: 15px;
+        padding: 5px;
+      }
+
+      input {
+        border: 1px solid #CCCCCC !important;
+        font-size: 24px;
+        width: 175px;
+        padding-left: 40px;
+      }
+    }
+
+    .bid-button {
+      margin: auto 0 auto 25px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .ember-modal-dialog {
+    width: 90%;
+  }
+
+  .bid-modal {
+
+    .bid-info {
+      grid-template-columns: 100%;
+
+      .bid-info-img {
+        margin: 0;
+        right: 1em;
+      }
+
+      .bid-info-content {
+        margin-top: 1.5em;
+      }
+
+    }
+
+    .bid-amounts {
+      margin: 20px 20px 40px 20px;
+    }
+
+    .bid-input {
+      grid-template-columns: 100%;
+
+      .inner-addon {
+        margin-left: 40px;
+        margin-right: 40px;
+
+        input {
+          width: 100%;
+        }
+      }
+
+      .bid-button {
+        margin: 20px auto 0 auto;
+      }
+    }
+  }
+}
+

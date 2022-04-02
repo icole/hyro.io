@@ -1,0 +1,11 @@
+{{#unless disableHeader}}
+  {{app-header}}
+  <div id="content">
+    {{outlet}}
+  </div>
+{{else}}
+  {{outlet}}
+{{/unless}}
+{{#unless disableFooter}}
+  {{app-footer}}
+{{/unless}}

@@ -1,0 +1,68 @@
+<div class="description">
+  <div class="container">
+    <h1>My Collection</h1>
+    <p>
+      Welcome to your personal Hyro Gallery. All of your unique, digital artwork is stored here and
+      belongs only to you. We're always working on ways to help you enjoy your art, so check back
+      frequently. In the meantime, keep building your collection!
+    </p>
+
+    <div class="gallery-buttons">
+      {{#link-to "offers" class="button"}}My Current Listings{{/link-to}}
+      {{#link-to "transactions" class="button"}}Transaction History{{/link-to}}
+    </div>
+  </div>
+</div>
+
+{{#each model as |edition|}}
+  {{collection-item
+    edition=edition
+    openCertificateModal=(action 'openCertificateModal')
+    toggleOfferModal=(action 'toggleOfferModal')}}
+{{/each}}
+
+<div class="description">
+  <div class="container">
+    <h1>Featured Piece</h1>
+    <p>Want to keep building your collection? View our currently available digital artwork now!</p>
+    {{#link-to "featured-piece" class="button"}}View Artwork{{/link-to}}
+  </div>
+</div>
+
+<div class="overlay print-overlay">
+  <div class="bg"></div>
+  <div class="description">
+    <div class="container">
+      <h1>PRINT & BURN</h1>
+      <h3>COMING SOON</h3>
+      <p>When you own a token representing digital art, you have the option to "Print & Burn".  This will allow you to create a physical edition of the artwork, framed and printed at museum-quality and shipped directly to you.</p>
+      <p>By placing an order to print a physical edition of your artwork, you'll initiate a 'burn' of your token.  This means that you will no longer own the digital copy and will no longer be able to sell or transfer the digital edition on the Hyro Marketplace.</p>
+    </div>
+    <div class="buttons">
+      <a class="button close">Close</a>
+    </div>
+  </div>
+</div>
+
+{{certificate-overlay edition=certificateEdition}}
+
+<div class="overlay artist-message-overlay">
+  <div class="bg"></div>
+  <div class="content">
+    <p class="big">Message from the artist</p>
+    <p>Placeholder text to be filled in with artist's message</p>
+    <div class="buttons">
+      <a class="button close">Close</a>
+    </div>
+  </div>
+</div>
+
+{{enlarge-overlay enlargedImage=enlargedImage}}
+
+{{#if isShowingOfferModal}}
+  {{offer-modal
+    isShowingOfferModal=isShowingOfferModal
+    editionOffered=editionOffered
+    artPiece=pieceOffered
+  }}
+{{/if}}

@@ -1,0 +1,41 @@
+<div class="hero what">
+  <div class="transaction-history container">
+    <table>
+      <thead>
+      <th>Edition Number</th>
+      <th>Highest Bid</th>
+      <th>Asking Price</th>
+      <th>My Bid</th>
+      <th></th>
+      </thead>
+      <tbody>
+      {{#each artPiece.artEditions as |edition|}}
+        {{#if edition.claimed}}
+          <tr>
+            <td class="value-column">{{edition.id}}</td>
+            <td class="value-column">{{format-amount edition.highestBid}}</td>
+            <td class="value-column">{{format-amount edition.lowestOffer}}</td>
+            <td class="value-column">{{format-amount edition.bidAmount}}</td>
+            <td>
+              <div>
+                <a class="action-button button" onClick={{action 'toggleBidModal' edition}}>Bid</a>
+              </div>
+            </td>
+          </tr>
+        {{/if}}
+      {{/each}}
+      </tbody>
+    </table>
+
+    <div class="nav-buttons">
+      {{#link-to "marketplace" class="button"}}View Marketplace{{/link-to}}
+    </div>
+  </div>
+</div>
+
+{{#if isShowingBidModal}}
+  {{bid-modal
+    isShowingBidModal=isShowingBidModal
+    bidEdition=bidEdition
+  }}
+{{/if}}

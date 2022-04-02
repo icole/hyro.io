@@ -1,0 +1,23 @@
+<div id="gallery-display">
+  <div id="gallery-display-content">
+    <div id="gallery-display-piece" class="{{if model.showDescription "display-piece-small" "display-piece-full"}}">
+    {{#if model.artPiece.ipfsHash}}
+      <img src="{{model.artPiece.fullImage}}"/>
+    {{/if}}
+    </div>
+
+    {{#if model.showDescription}}
+      <div id="gallery-display-description">
+        <h2>{{model.artPiece.name}}</h2>
+        <h3>{{model.artPiece.artist}}</h3>
+        <p>{{model.artPiece.description}}</p>
+       </div>
+    {{/if}}
+  </div>
+
+  <div class="footer">
+    <img src="/assets/images/logo.png" alt="hyro logo" class="logo"/>
+    <div class="display-text">
+    </div>
+  </div>
+</div>

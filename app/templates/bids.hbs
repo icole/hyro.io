@@ -1,0 +1,54 @@
+<div class="description">
+  <div class="container">
+    <h1>My Current Bids For Art</h1>
+  </div>
+</div>
+
+<div class="hero what">
+  <div class="transaction-history container">
+    <table>
+      <thead>
+        <th></th>
+        <th>Piece Name</th>
+        <th>Edition</th>
+        <th>My Bid</th>
+        <th>Highest Bid</th>
+        <th>Asking Price</th>
+        <th></th>
+      </thead>
+      <tbody>
+        {{#each model as |bid|}}
+          <tr>
+            <td class="piece-preview"><img src={{asset-map (concat "assets/images/" bid.artPiece.blurredImage ".png")}} alt=""/></td>
+            <td>{{bid.artPiece.name}}</td>
+            <td>{{bid.edition}}</td>
+            <td class="value-column">{{format-amount bid.bidAmount}}</td>
+            <td class="value-column">{{format-amount bid.highestBid}}</td>
+            <td class="value-column">{{format-amount bid.lowestOffer}}</td>
+            <td>
+              <div>
+                <a class="action-button button" onClick={{action 'toggleBidModal' bid}}>Change</a>
+                <a class="action-button button" onClick={{action 'deleteBid' bid}}>Delete</a>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="nav-buttons">
+      {{#link-to "marketplace" class="button"}}View Marketplace{{/link-to}}
+    </div>
+  </div>
+</div>
+
+{{#ember-cli-spinner id="processing" type="circles"}}
+  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
+{{/ember-cli-spinner}}
+
+{{#if isShowingBidModal}}
+  {{bid-modal
+    isShowingBidModal=isShowingBidModal
+    bidEdition=bidEdition
+  }}
+{{/if}}

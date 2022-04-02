@@ -1,0 +1,10 @@
+<div class="description">
+  <div class="container">
+    <h1>{{model.name}}</h1>
+    <p>{{model.description}}</p>
+  </div>
+</div>
+
+{{art-piece-purchase art-piece=selectedPiece}}
+
+{{art-piece-carousel galleryPieces=model.galleryPieces updateSelectedPiece=(action 'updateSelectedPiece')}}

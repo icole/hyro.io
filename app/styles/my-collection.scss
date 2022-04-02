@@ -1,0 +1,34 @@
+.more-buttons {
+  .button {
+    padding: 1em 1em;
+  }
+}
+
+.gallery-buttons {
+  a {
+    margin: 15px;
+    width: 220px;
+  }
+}
+
+.overlay.enlarge-overlay {
+  background-color: rgba(255, 255, 255, 0.959);
+  background-image: url(images/coa_background.png);
+
+  .bg {
+    background-color: transparent;
+  }
+
+  .button {
+    background-color: #86bdcc;
+    color: white;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.collection-img {
+  cursor: url('images/plus_cursor.png') 25 25, auto;
+}
