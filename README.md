@@ -4,5 +4,7 @@ Hyro.io was an early attempt at a digital art gallery to display, purchase and s
 
 # TODO items
 - [ ] Move over previous API to Mirage
-- [ ] Move over previous ERC-721 contracts
+- [X] Move over previous ERC-721 contracts
 - [ ] Update Ember.js to Octane
+- [ ] Update Solidity version for contracts
+- [ ] Move ERC-721 library to latest standard (OpenZeppelin?)
