@@ -1,0 +1,15 @@
+{
+  "name": "hyro-contracts",
+  "version": "1.0.0",
+  "description": "Solidity Contracts for Hyro.io",
+  "dependencies": {
+    "@0xcert/ethereum-erc721": "^1.10.0",
+    "ganache-cli": "^6.1.0",
+    "truffle": "^5.4.16",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1"
+  }
+}
