@@ -29,7 +29,7 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this.initUpdatePoll();
+    //this.initUpdatePoll();
   },
 
   async initUpdatePoll() {
