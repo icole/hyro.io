@@ -5,4 +5,5 @@ export default function (server) {
   */
   let gallery = server.create("gallery");
   server.create("art-piece", { gallery: gallery });
+  server.create("user");
 }

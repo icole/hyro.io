@@ -1,6 +1,6 @@
 import Service, { inject } from '@ember/service';
-import { isEmpty } from '@ember/utils';
-import { resolve } from 'rsvp';
+//import { isEmpty } from '@ember/utils';
+//import { resolve } from 'rsvp';
 import JWT from 'ember-simple-auth-token/authenticators/jwt';
 
 export default Service.extend({
@@ -8,15 +8,16 @@ export default Service.extend({
   store: inject(),
 
   load() {
-    const token = this.get('session.data.authenticated.accessToken');
-    if (!isEmpty(token)) {
-      const userId = this.getUserIdFromToken(token);
-      return this.get('store').find('user', userId).then((user) => {
-        this.set('user', user);
-      });
-    } else {
-      return resolve();
-    }
+    //const token = this.get('session.data.authenticated.accessToken');
+    //if (!isEmpty(token)) {
+    //  const userId = this.getUserIdFromToken(token);
+    const userId = 1;
+    return this.get('store').find('user', userId).then((user) => {
+      this.set('user', user);
+    });
+    //} else {
+    //  return resolve();
+    //}
   },
 
   getUserIdFromToken(token) {

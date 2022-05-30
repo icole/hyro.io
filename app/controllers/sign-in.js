@@ -1,11 +1,6 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
 
-// @TODO Update this to newer library
-//import ethUtil from 'npm:ethereumjs-util';
-//import Eth from 'npm:ethjs';
-//import buffer from 'npm:buffer';
-
 export default Controller.extend({
   web3: inject('web3'),
   store: inject(),
@@ -22,18 +17,17 @@ export default Controller.extend({
       //let signed = await eth.personal_sign(msg, from);
       //this.set('model.password', signed);
       //console.log('Signed: ' + signed);
-      this.get('model').save().then(function() {
-        self.get('session').authenticate('authenticator:token', {
-          strategy: "local",
-          email: self.get('model.email'),
-          password: self.get('model.password')
-        });
-        self.get('currentUser').load().then(function() {
-          self.transitionToRoute('featured-piece');
-        });
-      }).catch(function(reason) {
-        console.error(reason);
-      });
+      //this.get('model').save().then(function () {
+      //await this.get('session').authenticate('authenticator:token', {
+      //  strategy: "local",
+      //  email: this.get('model.email'),
+      //  password: this.get('model.password')
+      //});
+      await this.get('currentUser').load();
+      this.transitionToRoute('featured-piece');
+      //}).catch(function (reason) {
+      //  console.error(reason);
+      //});
     }
   }
 });

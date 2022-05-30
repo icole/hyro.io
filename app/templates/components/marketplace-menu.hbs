@@ -5,7 +5,7 @@
     <li class="nomovement"><a class="close" href="#!"><i class="fa fa-times-circle-o"></i></a></li>
     <li>{{#link-to "index" invokeAction=(action "closeMenu")}}Home{{/link-to}}</li>
     <li>{{#link-to "featured-piece" invokeAction=(action "closeMenu")}}Featured Piece{{/link-to}}</li>
-    {{#unless session.isAuthenticated}}
+    {{#unless currentUser.user}}
       <li>
         {{#link-to "sign-in" invokeAction="closeMenu"}}
           Sign in

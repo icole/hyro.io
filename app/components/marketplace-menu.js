@@ -3,6 +3,7 @@ import { inject } from '@ember/service';
 
 export default Component.extend({
   router: inject(),
+  currentUser: inject('current-user'),
 
   actions: {
     closeMenu() {

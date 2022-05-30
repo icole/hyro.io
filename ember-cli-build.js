@@ -13,6 +13,7 @@ module.exports = function (defaults) {
           http: true,
           https: true,
           os: true,
+          buffer: true,
         },
       },
     },

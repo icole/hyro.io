@@ -4,6 +4,7 @@ import { inject } from '@ember/service';
 export default Component.extend({
   session: inject('session'),
   layout: inject('layout'),
+  currentUser: inject('current-user'),
   router: inject(),
 
   actions: {
@@ -14,7 +15,7 @@ export default Component.extend({
 
       let menuItems = [...menu.querySelectorAll('li')];
 
-      for(let i = 0; i < menuItems.length; i++){
+      for (let i = 0; i < menuItems.length; i++) {
         menuItems[i].classList.remove('active');
       }
 
@@ -25,9 +26,10 @@ export default Component.extend({
         menu.style.display = "none";
       }, 500);
     },
-    openMenu() {
+    async openMenu() {
+      await this.get('currentUser').load();
       let menu = document.querySelector('.menu');
-      if(!menu.classList.contains('active')){
+      if (!menu.classList.contains('active')) {
         menu.style.display = "block";
         menu.querySelector('.bg').style.display = "block";
         setTimeout(() => {
@@ -36,7 +38,7 @@ export default Component.extend({
 
           let menuItems = [...menu.querySelectorAll('li')];
 
-          for(let i = 0; i < menuItems.length; i++){
+          for (let i = 0; i < menuItems.length; i++) {
             setTimeout(() => {
               menuItems[i].classList.add('active');
             }, 100 * i);
@@ -44,7 +46,7 @@ export default Component.extend({
         }, 200);
       }
 
-      document.querySelector('.menu .bg').addEventListener('click', function(){
+      document.querySelector('.menu .bg').addEventListener('click', function () {
         // Close button and also close when you click the overlay
         let menu = document.querySelector('.menu');
 
@@ -52,7 +54,7 @@ export default Component.extend({
 
         let menuItems = [...menu.querySelectorAll('li')];
 
-        for(let i = 0; i < menuItems.length; i++){
+        for (let i = 0; i < menuItems.length; i++) {
           menuItems[i].classList.remove('active');
         }
 
@@ -61,14 +63,14 @@ export default Component.extend({
         menu.querySelector('.bg').style.display = "none";
         menu.style.display = "none";
       });
-      document.querySelector('.menu a.close').addEventListener('click', function(){
+      document.querySelector('.menu a.close').addEventListener('click', function () {
         let menu = document.querySelector('.menu');
 
         menu.querySelector('.bg').style.opacity = 0;
 
         let menuItems = [...menu.querySelectorAll('li')];
 
-        for(let i = 0; i < menuItems.length; i++){
+        for (let i = 0; i < menuItems.length; i++) {
           menuItems[i].classList.remove('active');
         }
 

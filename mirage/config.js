@@ -22,6 +22,12 @@ export default function () {
 
     https://www.ember-cli-mirage.com/docs/route-handlers/shorthands
   */
+  this.get('/galleries');
   this.get("/galleries/:id");
+  this.post("/galleries");
+  this.get('/art-pieces');
   this.get("/art-pieces/:id");
+  this.get("/gallery-editions", "art-editions")
+  this.get("/users/:id");
+  this.post("/users");
 }

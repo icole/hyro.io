@@ -6,9 +6,9 @@ export default Route.extend({
 
   async model() {
     await this.get('currentUser').load();
-    let galleryEditions = await this.store.query('gallery-edition', {
+    let galleryEditions = [await this.store.queryRecord('gallery-edition', {
       user: this.get('currentUser').user.id
-    });
+    })];
     return galleryEditions;
   }
 });

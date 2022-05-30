@@ -10,6 +10,6 @@ export default Factory.extend({
   },
 
   afterCreate(artPiece, server) {
-    server.create("art-edition", { artPiece: artPiece });
+    server.createList("art-edition", 2, { artPiece: artPiece });
   },
 });

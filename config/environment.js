@@ -56,7 +56,7 @@ module.exports = function (environment) {
   //ENV.APP.contractsPath = process.env.CONTRACTS_PATH || "/local_contracts/";
 
   ENV["ember-simple-auth-token"] = {
-    serverTokenEndpoint: `${ENV.APP.apiHost}/authentication`, // Server endpoint to send authenticate request
+    serverTokenEndpoint: `/api/authentication`, // Server endpoint to send authenticate request
     tokenPropertyName: "accessToken", // Key in server response that contains the access token
     headers: {}, // Headers to add to the
   };
