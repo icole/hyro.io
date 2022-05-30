@@ -6,6 +6,7 @@ module.exports = function (environment) {
     environment,
     rootURL: "/",
     historySupportMiddleware: true,
+    locationType: "auto",
     ifa: { enabled: true },
     "ember-websockets": {
       socketIO: true,

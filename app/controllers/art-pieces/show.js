@@ -1,9 +1,8 @@
-import Controller from '@ember/controller';
-import { inject } from '@ember/service';
+import Controller from "@ember/controller";
+import { inject } from "@ember/service";
 
 export default Controller.extend({
-  web3: inject('web3'),
-  spinner: inject('spinner'),
+  web3: inject("web3"),
   isShowingModal: false,
   bidPlaced: false,
   bidProcessing: false,
@@ -16,13 +15,13 @@ export default Controller.extend({
     toggleBidModal(artPiece) {
       //For right now we should create an art edition wrapper to keep this consistent with offers
       let artEdition = {
-        artPiece: artPiece
-      }
-      this.set('bidPiece', artEdition);
-      this.toggleProperty('isShowingBidModal');
+        artPiece: artPiece,
+      };
+      this.set("bidPiece", artEdition);
+      this.toggleProperty("isShowingBidModal");
     },
     bidAgain() {
-      this.set('bidPlaced', false);
-    }
-  }
+      this.set("bidPlaced", false);
+    },
+  },
 });
