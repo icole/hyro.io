@@ -8,31 +8,48 @@
   <div class="transaction-history container">
     <table>
       <thead>
-      <th></th>
-      <th>Piece Name</th>
-      <th>Edition</th>
-      <th>My List Price</th>
-      <th>Lowest Listing <br/> (Any Edition)</th>
-      <th>Highest Bid <br/> (Any Edition)</th>
-      <th></th>
+        <th></th>
+        <th>Piece Name</th>
+        <th>Edition</th>
+        <th>My List Price</th>
+        <th>Lowest Listing <br /> (Any Edition)</th>
+        <th>Highest Bid <br /> (Any Edition)</th>
+        <th></th>
       </thead>
       <tbody>
-      {{#each model as |offer|}}
-        <tr>
-          <td class="piece-preview"><a {{action 'enlargePiece' offer.artPiece.fullImage}}><img src={{asset-map (concat "assets/images/" offer.artPiece.previewImage ".png")}} alt=""/></a></td>
-          <td>{{offer.artPiece.name}}</td>
-          <td>{{offer.edition}}</td>
-          <td class="value-column">{{format-amount offer.offerAmount}}</td>
-          <td class="value-column">{{format-amount offer.artPiece.lowestOffer}}</td>
-          <td class="value-column">{{format-amount offer.artPiece.highestBid}}</td>
-          <td>
-            <div>
-              <a class="action-button button" onClick={{action 'toggleOfferModal' offer}}>Change</a>
-              <a class="action-button button" onClick={{action 'deleteOffer' offer}}>Delete</a>
-            </div>
-          </td>
-        </tr>
-      {{/each}}
+        {{#each model as |offer|}}
+          <tr>
+            <td class="piece-preview"><a
+                {{action "enlargePiece" offer.artPiece.fullImage}}
+              ><img
+                  src={{asset-map
+                    (concat "assets/images/" offer.artPiece.previewImage ".png")
+                  }}
+                  alt=""
+                /></a></td>
+            <td>{{offer.artPiece.name}}</td>
+            <td>{{offer.edition}}</td>
+            <td class="value-column">{{format-amount offer.offerAmount}}</td>
+            <td class="value-column">{{format-amount
+                offer.artPiece.lowestOffer
+              }}</td>
+            <td class="value-column">{{format-amount
+                offer.artPiece.highestBid
+              }}</td>
+            <td>
+              <div>
+                <a
+                  class="action-button button"
+                  onClick={{action "toggleOfferModal" offer}}
+                >Change</a>
+                <a
+                  class="action-button button"
+                  onClick={{action "deleteOffer" offer}}
+                >Delete</a>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
       </tbody>
     </table>
 
@@ -44,9 +61,8 @@
 
 {{enlarge-overlay enlargedImage=enlargedImage}}
 
-{{#ember-cli-spinner id="processing" type="circles"}}
-  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
-{{/ember-cli-spinner}}
+Transaction validating on Ethereum Network. Validation may take up to 1 minute,
+please do not refresh page.
 
 {{#if isShowingOfferModal}}
   {{offer-modal

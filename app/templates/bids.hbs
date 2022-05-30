@@ -19,7 +19,12 @@
       <tbody>
         {{#each model as |bid|}}
           <tr>
-            <td class="piece-preview"><img src={{asset-map (concat "assets/images/" bid.artPiece.blurredImage ".png")}} alt=""/></td>
+            <td class="piece-preview"><img
+                src={{asset-map
+                  (concat "assets/images/" bid.artPiece.blurredImage ".png")
+                }}
+                alt=""
+              /></td>
             <td>{{bid.artPiece.name}}</td>
             <td>{{bid.edition}}</td>
             <td class="value-column">{{format-amount bid.bidAmount}}</td>
@@ -27,8 +32,14 @@
             <td class="value-column">{{format-amount bid.lowestOffer}}</td>
             <td>
               <div>
-                <a class="action-button button" onClick={{action 'toggleBidModal' bid}}>Change</a>
-                <a class="action-button button" onClick={{action 'deleteBid' bid}}>Delete</a>
+                <a
+                  class="action-button button"
+                  onClick={{action "toggleBidModal" bid}}
+                >Change</a>
+                <a
+                  class="action-button button"
+                  onClick={{action "deleteBid" bid}}
+                >Delete</a>
               </div>
             </td>
           </tr>
@@ -42,13 +53,9 @@
   </div>
 </div>
 
-{{#ember-cli-spinner id="processing" type="circles"}}
-  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
-{{/ember-cli-spinner}}
+Transaction validating on Ethereum Network. Validation may take up to 1 minute,
+please do not refresh page.
 
 {{#if isShowingBidModal}}
-  {{bid-modal
-    isShowingBidModal=isShowingBidModal
-    bidEdition=bidEdition
-  }}
+  {{bid-modal isShowingBidModal=isShowingBidModal bidEdition=bidEdition}}
 {{/if}}

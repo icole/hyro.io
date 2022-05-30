@@ -8,7 +8,9 @@
   <div class="container">
     <div class="half">
       <h2>{{art-piece.name}}</h2>
-      <h3 class="artist-info" {{action 'openArtistOverlay'}}>ARTIST: {{art-piece.artist}} <span class="help-icon">(<span class="primary">?</span>)</span></h3>
+      <h3 class="artist-info" {{action "openArtistOverlay"}}>ARTIST:
+        {{art-piece.artist}}
+        <span class="help-icon">(<span class="primary">?</span>)</span></h3>
       <h3 class="gallery-info">GALLERY: {{art-piece.gallery.name}}</h3>
     </div>
     <div class="half small">
@@ -16,12 +18,19 @@
         <p>Current Edition: SOLD OUT</p>
         {{#link-to "art-pieces.show" art-piece.id class="button"}}Bid now{{/link-to}}
       {{else}}
-        <p>Buy it now price: 0.15<img style="height: 16px" src="/assets/images/eth.svg" alt=""/></p>
-        <p>Current Edition: {{art-piece.nextEdition}} / {{art-piece.editions}}</p>
+        <p>Buy it now price: 0.15<img
+            style="height: 16px"
+            src="/assets/images/eth.svg"
+            alt=""
+          /></p>
+        <p>Current Edition:
+          {{art-piece.nextEdition}}
+          /
+          {{art-piece.editions}}</p>
         {{#if session.isAuthenticated}}
-          <a class="button" {{action 'buyCurrentRelease'}}>Buy now</a>
+          <a class="button" {{action "buyCurrentRelease"}}>Buy now</a>
         {{else}}
-          <a class="button" {{action 'redirectSignIn'}}>Buy now</a>
+          <a class="button" {{action "redirectSignIn"}}>Buy now</a>
         {{/if}}
       {{/if}}
     </div>
@@ -35,9 +44,8 @@
   </div>
 </div>
 
-{{#ember-cli-spinner id="order-processing" type="circles"}}
-  Transaction validating on Ethereum Network.  Validation may take up to 1 minute, please do not refresh page.
-{{/ember-cli-spinner}}
+Transaction validating on Ethereum Network. Validation may take up to 1 minute,
+please do not refresh page.
 
 <div class="overlay artist-overlay">
   <div class="bg"></div>
@@ -59,7 +67,7 @@
       <h3>CURRENT FEATURES</h3>
       <p>Proof of ownership for provably scarce digital art.</p>
       <p>Access to viewing the full hi-resolution artwork.</p>
-      <p>Buy and sell artwork on the Hyro Marketplace.</p>  
+      <p>Buy and sell artwork on the Hyro Marketplace.</p>
     </div>
     <div class="buttons">
       <a class="button close">Close</a>
