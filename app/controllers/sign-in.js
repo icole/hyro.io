@@ -9,7 +9,7 @@ export default Controller.extend({
 
   actions: {
     async createUser() {
-      let self = this;
+      //let self = this;
       //let msg = ethUtil.bufferToHex(new buffer.Buffer('Hyro Sign In', 'utf8'));
       //let from = this.get('model.address');
       //let eth = new Eth(this.get('web3.web3Instance.currentProvider'));
