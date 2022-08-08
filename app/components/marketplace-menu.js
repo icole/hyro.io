@@ -1,15 +1,14 @@
+import { tagName } from "@ember-decorators/component";
 import classic from 'ember-classic-decorator';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 import Component from '@ember/component';
 
+@tagName("")
 @classic
 export default class MarketplaceMenu extends Component {
-  @inject()
-  router;
-
-  @inject('current-user')
-  currentUser;
+  @inject() router;
+  @inject('current-user') currentUser;
 
   @action
   closeMenu() {
@@ -33,8 +32,8 @@ export default class MarketplaceMenu extends Component {
 
   @action
   userLogout() {
-    this.get('session').invalidate('authenticator:custom');
+    this.session.invalidate('authenticator:custom');
     this.actions.closeMenu();
-    this.get('router').transitionTo('index');
+    this.router.transitionTo('index');
   }
 }

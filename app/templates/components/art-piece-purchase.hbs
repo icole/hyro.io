@@ -1,57 +1,59 @@
-<div class="description featured-piece-image">
-  <div class="container">
-    {{blurred-image model=art-piece}}
-  </div>
-</div>
-
-<div class="item">
-  <div class="container">
-    <div class="half">
-      <h2>{{art-piece.name}}</h2>
-      <h3 class="artist-info" {{action "openArtistOverlay"}}>ARTIST:
-        {{art-piece.artist}}
-        <span class="help-icon">(<span class="primary">?</span>)</span></h3>
-      <h3 class="gallery-info">GALLERY: {{art-piece.gallery.name}}</h3>
+<div ...attributes>
+  <div class="description featured-piece-image">
+    <div class="container">
+      {{blurred-image model=art-piece}}
     </div>
-    <div class="half small">
-      {{#if art-piece.soldOut}}
-        <p>Current Edition: SOLD OUT</p>
-        {{#link-to "art-pieces.show" art-piece.id class="button"}}Bid now{{/link-to}}
-      {{else}}
-        <p>Buy it now price: 0.15<img
-            style="height: 16px"
-            src="/assets/images/eth.svg"
-            alt=""
-          /></p>
-        <p>Current Edition:
-          {{art-piece.nextEdition}}
-          /
-          {{art-piece.editions}}</p>
-        {{#if session.isAuthenticated}}
-          <a class="button" {{action "buyCurrentRelease"}}>Buy now</a>
+  </div>
+
+  <div class="item">
+    <div class="container">
+      <div class="half">
+        <h2>{{art-piece.name}}</h2>
+        <h3 class="artist-info" {{action "openArtistOverlay"}}>ARTIST:
+          {{art-piece.artist}}
+          <span class="help-icon">(<span class="primary">?</span>)</span></h3>
+        <h3 class="gallery-info">GALLERY: {{art-piece.gallery.name}}</h3>
+      </div>
+      <div class="half small">
+        {{#if art-piece.soldOut}}
+          <p>Current Edition: SOLD OUT</p>
+          {{#link-to "art-pieces.show" art-piece.id class="button"}}Bid now{{/link-to}}
         {{else}}
-          <a class="button" {{action "redirectSignIn"}}>Buy now</a>
+          <p>Buy it now price: 0.15<img
+              style="height: 16px"
+              src="/assets/images/eth.svg"
+              alt=""
+            /></p>
+          <p>Current Edition:
+            {{art-piece.nextEdition}}
+            /
+            {{art-piece.editions}}</p>
+          {{#if session.isAuthenticated}}
+            <a class="button" {{action "buyCurrentRelease"}}>Buy now</a>
+          {{else}}
+            <a class="button" {{action "redirectSignIn"}}>Buy now</a>
+          {{/if}}
         {{/if}}
-      {{/if}}
+      </div>
     </div>
   </div>
-</div>
 
-<div class="description">
-  <div class="container left">
-    <h3>About The Piece</h3>
-    <p>{{art-piece.description}}</p>
+  <div class="description">
+    <div class="container left">
+      <h3>About The Piece</h3>
+      <p>{{art-piece.description}}</p>
+    </div>
   </div>
-</div>
 
-<div class="overlay artist-overlay">
-  <div class="bg"></div>
-  <div class="content">
-    <p class="big">About the Artist</p>
-    <p class="info">Description of Artist</p>
-    <div class="more-info"></div>
-    <div class="buttons">
-      <div class="button close">Close</div>
+  <div class="overlay artist-overlay">
+    <div class="bg"></div>
+    <div class="content">
+      <p class="big">About the Artist</p>
+      <p class="info">Description of Artist</p>
+      <div class="more-info"></div>
+      <div class="buttons">
+        <div class="button close">Close</div>
+      </div>
     </div>
   </div>
 </div>

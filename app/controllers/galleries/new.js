@@ -9,7 +9,7 @@ export default class NewController extends Controller {
   @action
   save() {
     let self = this;
-    this.get('model').save().then(function () {
+    this.model.save().then(function () {
       self.transitionToRoute('galleries');
     }).catch(function (reason) {
       console.error(reason);

@@ -1,29 +1,31 @@
-<div>
-  <div class="description">
-    <div class="container">
-      <h1>One Step Away...</h1>
-      <h4>
-        Enter Your Hyro Login Details Below.<br/>
-        <br/>
-        If You Are New To Hyro, Enter Your Desired Email and Username To Create An Account.
-      </h4>
+<div ...attributes>
+  <div>
+    <div class="description">
+      <div class="container">
+        <h1>One Step Away...</h1>
+        <h4>
+          Enter Your Hyro Login Details Below.<br/>
+          <br/>
+          If You Are New To Hyro, Enter Your Desired Email and Username To Create An Account.
+        </h4>
+      </div>
     </div>
-  </div>
 
-  <div class="description">
-    <div class="container">
-      <form>
-        <label>Wallet Address</label>
-        {{input name="address" disabled="disabled" value=model.address}}
+    <div class="description">
+      <div class="container">
+        <form>
+          <label>Wallet Address</label>
+          {{input name="address" disabled="disabled" value=model.address}}
 
-        <label>Email</label>
-        {{input type="email" name="email" value=model.email}}
+          <label>Email</label>
+          {{input type="email" name="email" value=model.email}}
 
-        <label>User name</label>
-        {{input type="text" name="username" value=model.username}}
+          <label>User name</label>
+          {{input type="text" name="username" value=model.username}}
 
-        <button type="submit" class="button" {{action 'createUser'}}>Sign In</button>
-      </form>
+          <button type="submit" class="button" {{action 'createUser'}}>Sign In</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

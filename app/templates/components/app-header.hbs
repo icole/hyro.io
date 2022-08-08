@@ -1,11 +1,13 @@
-<div>
-  <div class="header">
-    <div class="strip"></div>
-    <div class="limits">
-      {{#link-to "index"}}<img src="/assets/images/logo.png" alt="hyro logo" class="lozad logo" />{{/link-to}}
-      <img src="/assets/images/menu.svg" class="lozad bars" alt="" {{action "openMenu"}} />
+<div ...attributes>
+  <div>
+    <div class="header">
+      <div class="strip"></div>
+      <div class="limits">
+        {{#link-to "index"}}<img src="/assets/images/logo.png" alt="hyro logo" class="lozad logo" />{{/link-to}}
+        <img src="/assets/images/menu.svg" class="lozad bars" alt="" {{action "openMenu"}} />
+      </div>
     </div>
-  </div>
 
-  {{marketplace-menu session=session}}
+    {{marketplace-menu session=session}}
+  </div>
 </div>

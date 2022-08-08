@@ -1,21 +1,16 @@
+import { tagName } from "@ember-decorators/component";
 import classic from 'ember-classic-decorator';
 import { action } from '@ember/object';
 import { inject } from '@ember/service';
 import Component from "@ember/component";
 
+@tagName("")
 @classic
 export default class ArtPiecePurchase extends Component {
-  @inject("web3")
-  web3;
-
-  @inject("session")
-  session;
-
-  @inject("current-user")
-  currentUser;
-
-  @inject("router")
-  router;
+  @inject("web3") web3;
+  @inject("session") session;
+  @inject("current-user") currentUser;
+  @inject("router") router;
 
   orderProcessing = false;
 
@@ -46,12 +41,12 @@ export default class ArtPiecePurchase extends Component {
 
   @action
   async buyCurrentRelease() {
-    let web3 = this.get("web3");
+    let web3 = this.web3;
     let contract = web3.get("contract");
     let account = web3.get("account");
     let artPieceId = this.get("art-piece.id");
     let editionId = this.get("art-piece.nextEdition");
-    await this.get("currentUser").load();
+    await this.currentUser.load();
 
     if (contract && account) {
       this.set("orderProcessing", true);
@@ -87,12 +82,12 @@ export default class ArtPiecePurchase extends Component {
         console.error(err);
       }
     } else {
-      this.get("router").transitionTo("sign-in");
+      this.router.transitionTo("sign-in");
     }
   }
 
   @action
   redirectSignIn() {
-    this.get("router").transitionTo("sign-in");
+    this.router.transitionTo("sign-in");
   }
 }

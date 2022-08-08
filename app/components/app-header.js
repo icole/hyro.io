@@ -1,20 +1,16 @@
 import classic from 'ember-classic-decorator';
 import { action } from '@ember/object';
-import { layout } from '@ember-decorators/component';
+import { layout, tagName } from '@ember-decorators/component';
 import { inject } from '@ember/service';
 import Component from '@ember/component';
 
+@tagName("")
 @classic
 @layout(inject('layout'))
 export default class AppHeader extends Component {
-  @inject('session')
-  session;
-
-  @inject('current-user')
-  currentUser;
-
-  @inject()
-  router;
+  @inject('session') session;
+  @inject('current-user') currentUser;
+  @inject() router;
 
   @action
   closeMenu() {
@@ -38,7 +34,7 @@ export default class AppHeader extends Component {
 
   @action
   async openMenu() {
-    await this.get('currentUser').load();
+    await this.currentUser.load();
     let menu = document.querySelector('.menu');
     if (!menu.classList.contains('active')) {
       menu.style.display = "block";

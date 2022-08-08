@@ -3,14 +3,17 @@ module.exports = {
   parser: "@babel/eslint-parser",
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: 'module'
+    sourceType: 'module',
+    requireConfigFile: false
   },
   plugins: [
-    'ember'
+    'ember',
+    'decorator-position',
   ],
   extends: [
     'eslint:recommended',
-    'plugin:ember/recommended'
+    'plugin:ember/recommended',
+    'plugin:decorator-position/ember'
   ],
   env: {
     browser: true,
@@ -26,7 +29,8 @@ module.exports = {
         'testem.js',
         'ember-cli-build.js',
         'config/**/*.js',
-        'lib/*/index.js'
+        'lib/*/index.js',
+        '.eslintrc.js'
       ],
       parserOptions: {
         sourceType: 'script',

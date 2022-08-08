@@ -5,14 +5,9 @@ import Controller from "@ember/controller";
 
 @classic
 export default class ShowController extends Controller {
-  @inject("web3")
-  web3;
-
-  @inject("session")
-  session;
-
-  @inject("current-user")
-  currentUser;
+  @inject("web3") web3;
+  @inject("session") session;
+  @inject("current-user") currentUser;
 
   orderProcessing = false;
   selectedPiece = null;
@@ -25,12 +20,12 @@ export default class ShowController extends Controller {
 
   @action
   async buyCurrentRelease() {
-    let web3 = this.get("web3");
+    let web3 = this.web3;
     let contract = web3.get("contract");
     let account = web3.get("account");
     let artPieceId = this.get("model.id");
     let editionId = this.get("model.nextEdition");
-    await this.get("currentUser").load();
+    await this.currentUser.load();
 
     if (contract && account) {
       this.set("orderProcessing", true);

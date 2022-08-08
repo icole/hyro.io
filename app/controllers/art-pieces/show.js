@@ -5,8 +5,7 @@ import Controller from "@ember/controller";
 
 @classic
 export default class ShowController extends Controller {
-  @inject("web3")
-  web3;
+  @inject("web3") web3;
 
   isShowingModal = false;
   bidPlaced = false;

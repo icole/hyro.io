@@ -5,8 +5,7 @@ import Controller from "@ember/controller";
 
 @classic
 export default class OffersController extends Controller {
-  @inject("web3")
-  web3;
+  @inject("web3") web3;
 
   @action
   toggleOfferModal(offer) {
@@ -18,7 +17,7 @@ export default class OffersController extends Controller {
 
   @action
   async deleteOffer(offer) {
-    let web3 = this.get("web3");
+    let web3 = this.web3;
     let contract = web3.get("contract");
     let account = web3.get("account");
     if (contract && account) {

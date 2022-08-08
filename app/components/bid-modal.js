@@ -1,23 +1,25 @@
+import { tagName } from "@ember-decorators/component";
 import classic from 'ember-classic-decorator';
 import { action, computed } from '@ember/object';
 import { inject } from '@ember/service';
 import Component from "@ember/component";
 import { getOwner } from "@ember/application";
 
+@tagName("")
 @classic
 export default class BidModal extends Component {
-  @inject("web3")
-  web3;
+  @inject("web3") web3;
+  @inject() router;
 
   bidPlaced = false;
   bidProcessing = false;
   bidAmount = null;
   bidResult = null;
 
-  @computed("bidAmount")
+  @computed('bidAmount', 'bidEdition.lowestOffer')
   get bidMetOffer() {
     const offer = parseFloat(this.get("bidEdition.lowestOffer"));
-    const bid = parseFloat(this.get("bidAmount"));
+    const bid = parseFloat(this.bidAmount);
     return offer > 0 && offer <= bid;
   }
 
@@ -33,10 +35,10 @@ export default class BidModal extends Component {
 
   @action
   async placeBid() {
-    let web3 = this.get("web3");
+    let web3 = this.web3;
     let contract = web3.get("contract");
     let marketplaceContract = web3.get("marketplaceContract");
-    let bidAmount = parseFloat(this.get("bidAmount"));
+    let bidAmount = parseFloat(this.bidAmount);
     let artPieceId = this.get("bidEdition.artPiece.id");
     let edition = this.get("bidEdition.edition");
 
@@ -88,7 +90,7 @@ export default class BidModal extends Component {
               self.set("bidPlaced", true);
               self.set("bidResult", null);
               getOwner(self)
-                .lookup("router:main")
+                .router
                 .transitionTo("order-pending", { queryParams: { tx: result.transactionHash } });
             }
           });
@@ -123,7 +125,7 @@ export default class BidModal extends Component {
 
   @action
   validateAmount() {
-    let newAmount = this.get("bidAmount");
+    let newAmount = this.bidAmount;
     //@TODO Validate correct number format (e.g 0.1 not .1)
     newAmount = parseFloat(newAmount);
     let lowestOffer = this.get("bidEdition.lowestOffer");

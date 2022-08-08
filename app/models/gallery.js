@@ -1,14 +1,16 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
-const { attr, hasMany } = DS;
+import { Model, attr, hasMany } from '@ember/data';
 
-export default DS.Model.extend({
-  name: attr('string'),
-  location: attr('string'),
-  description: attr('string'),
-  image: attr('string'),
-  imageUrl: computed('image', function() {
-    return `https://ipfs.io/ipfs/${this.get('image')}`;
-  }),
-  galleryPieces: hasMany('art-piece')
-});
+@classic
+export default class Gallery extends Model {
+  @attr('string') name;
+  @attr('string') location;
+  @attr('string') description;
+  @attr('string') image;
+  @computed('image')
+  get imageUrl() {
+    return `https://ipfs.io/ipfs/${this.image}`;
+  }
+  @hasMany('art-piece') galleryPieces;
+}

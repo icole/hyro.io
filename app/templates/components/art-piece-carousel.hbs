@@ -1,23 +1,25 @@
-<div id="gallery-carousel" class="container">
-  <div class="control-container">
-    <div id="left-scroll-carousel-button" class="left-scroll carousel-button scroll">
-      <i {{action 'leftScrollClick'}} class="fa fa-chevron-left" aria-hidden="true"></i>
-    </div>
-    <div id="right-scroll-carousel-button" class="right-scroll carousel-button scroll">
-      <i {{action 'rightScrollClick'}} class="fa fa-chevron-right" aria-hidden="true"></i>
-    </div>
-  </div>
-
-  <div class="items" id="carousel-items">
-    {{#each galleryPieces as |galleryPiece|}}
-      <div class="item">
-        <a href="#" {{action 'updateSelectedPiece' galleryPiece.id}}>
-          <img class="item-image" src={{asset-map (concat "assets/images/" galleryPiece.previewImage ".png")}}/>
-          <span class="item-title">{{galleryPiece.name}}</span>
-          <span class="item-load-icon opacity-none"></span>
-          <div class="item-description opacity-none"></div>
-        </a>
+<div ...attributes>
+  <div id="gallery-carousel" class="container">
+    <div class="control-container">
+      <div id="left-scroll-carousel-button" class="left-scroll carousel-button scroll">
+        <i {{action 'leftScrollClick'}} class="fa fa-chevron-left" aria-hidden="true"></i>
       </div>
-    {{/each}}
+      <div id="right-scroll-carousel-button" class="right-scroll carousel-button scroll">
+        <i {{action 'rightScrollClick'}} class="fa fa-chevron-right" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="items" id="carousel-items">
+      {{#each galleryPieces as |galleryPiece|}}
+        <div class="item">
+          <a href="#" {{action 'updateSelectedPiece' galleryPiece.id}}>
+            <img class="item-image" src={{asset-map (concat "assets/images/" galleryPiece.previewImage ".png")}}/>
+            <span class="item-title">{{galleryPiece.name}}</span>
+            <span class="item-load-icon opacity-none"></span>
+            <div class="item-description opacity-none"></div>
+          </a>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </div>

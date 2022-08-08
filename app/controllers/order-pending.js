@@ -9,6 +9,6 @@ export default class OrderPendingController extends Controller {
 
   @computed('tx')
   get ethscanLink() {
-    return `https://rinkeby.etherscan.io/tx/${this.get('tx')}`;
+    return `https://rinkeby.etherscan.io/tx/${this.tx}`;
   }
 }

@@ -5,8 +5,7 @@ import Controller from '@ember/controller';
 
 @classic
 export default class MyCollectionController extends Controller {
-  @inject('web3')
-  web3;
+  @inject('web3') web3;
 
   certificateEdition = null;
   isShowingOfferModal = false;

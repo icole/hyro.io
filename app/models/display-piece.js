@@ -1,15 +1,9 @@
 import classic from 'ember-classic-decorator';
-import DS from 'ember-data';
-const { Model, attr, belongsTo } = DS;
+import { Model, attr, belongsTo } from '@ember/data';
 
 @classic
 export default class DisplayPiece extends Model {
-  @belongsTo('art-piece')
-  artPiece;
-
-  @attr('string')
-  owner;
-
-  @attr('boolean')
-  showDescription;
+  @belongsTo('art-piece') artPiece;
+  @attr('string') owner;
+  @attr('boolean') showDescription;
 }

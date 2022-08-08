@@ -1,18 +1,10 @@
 import classic from 'ember-classic-decorator';
-import DS from 'ember-data';
-const { Model, attr, belongsTo } = DS;
+import { Model, attr, belongsTo } from '@ember/data';
 
 @classic
 export default class Offer extends Model {
-  @attr('number')
-  offerAmount;
-
-  @attr('number')
-  highestBid;
-
-  @attr('number')
-  edition;
-
-  @belongsTo('art-piece')
-  artPiece;
+  @attr('number') offerAmount;
+  @attr('number') highestBid;
+  @attr('number') edition;
+  @belongsTo('art-piece') artPiece;
 }

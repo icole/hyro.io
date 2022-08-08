@@ -6,11 +6,11 @@ import Controller from '@ember/controller';
 export default class ApplicationController extends Controller {
   @computed('currentPath')
   get disableHeader() {
-    this.get('currentPath') == 'gallery-display.display';
+    return this.currentPath === 'gallery-display.display';
   }
 
   @computed('currentPath')
   get disableFooter() {
-    this.get('currentPath') == 'gallery-display.display';
+    return this.currentPath === 'gallery-display.display';
   }
 }

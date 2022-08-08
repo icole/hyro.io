@@ -1,102 +1,104 @@
-{{#modal-dialog
-  onClose="toggleBidModal"
-  targetAttachment="center"
-  translucentOverlay=true
-  containerClass="bid-modal"
-}}
-  <header class="ember-modal-head">
-    <button class="close" {{action "toggleBidModal"}}>x</button>
-  </header>
-  <div class="ember-modal-body">
-    <div class="bid-info">
-      <div class="bid-info-img img">
-        <img
-          src={{asset-map
-            (concat "assets/images/" bidEdition.artPiece.blurredImage ".png")
-          }}
-          alt=""
-        />
-      </div>
-      <div class="bid-info-content">
-        <div class="bid-edition-content">
-          <h2>{{#link-to
-              "art-pieces.show"
-              bidEdition.artPiece.id
-            }}{{bidEdition.artPiece.name}}{{/link-to}}</h2>
-          <h3>{{bidEdition.artPiece.artist}}</h3>
-          <h3>Edition: {{bidEdition.edition}}</h3>
-          <p><span><b>Status</b> : </span>{{bidEdition.artPiece.status}}</p>
+<div ...attributes>
+  {{#modal-dialog
+    onClose="toggleBidModal"
+    targetAttachment="center"
+    translucentOverlay=true
+    containerClass="bid-modal"
+  }}
+    <header class="ember-modal-head">
+      <button class="close" {{action "toggleBidModal"}}>x</button>
+    </header>
+    <div class="ember-modal-body">
+      <div class="bid-info">
+        <div class="bid-info-img img">
+          <img
+            src={{asset-map
+              (concat "assets/images/" bidEdition.artPiece.blurredImage ".png")
+            }}
+            alt=""
+          />
         </div>
-        {{#unless bidProcessing}}
-          <div class="bid-amounts">
-            <div>
-              <span class="eth-amount">0.15<img
-                  style="height: 26px"
-                  src="/assets/images/eth.svg"
-                  alt=""
-                /></span>
-              <br />
-              <span>Initial price</span>
-            </div>
-            <div>
-              <span class="eth-amount">{{format-amount
-                  bidEdition.highestBid
-                }}</span>
-              <br />
-              <span>Highest bid</span>
-            </div>
-            <div>
-              <span class="eth-amount">{{format-amount
-                  bidEdition.lowestOffer
-                }}</span>
-              <br />
-              <span>Asking price</span>
-            </div>
+        <div class="bid-info-content">
+          <div class="bid-edition-content">
+            <h2>{{#link-to
+                "art-pieces.show"
+                bidEdition.artPiece.id
+              }}{{bidEdition.artPiece.name}}{{/link-to}}</h2>
+            <h3>{{bidEdition.artPiece.artist}}</h3>
+            <h3>Edition: {{bidEdition.edition}}</h3>
+            <p><span><b>Status</b> : </span>{{bidEdition.artPiece.status}}</p>
           </div>
-          {{#if bidPlaced}}
-            <div class="bid-complete">
-              <p>Your bid of {{bidAmount}} ETH has been successfully placed!</p>
-              <p>If the bid is accepted your ETH will be transferred and the
-                artwork will be transferred to your Gallery.</p>
-              <div class="bid-again-button">
-                <a class="button" {{action "bidAgain"}}>Bid Again</a>
+          {{#unless bidProcessing}}
+            <div class="bid-amounts">
+              <div>
+                <span class="eth-amount">0.15<img
+                    style="height: 26px"
+                    src="/assets/images/eth.svg"
+                    alt=""
+                  /></span>
+                <br />
+                <span>Initial price</span>
+              </div>
+              <div>
+                <span class="eth-amount">{{format-amount
+                    bidEdition.highestBid
+                  }}</span>
+                <br />
+                <span>Highest bid</span>
+              </div>
+              <div>
+                <span class="eth-amount">{{format-amount
+                    bidEdition.lowestOffer
+                  }}</span>
+                <br />
+                <span>Asking price</span>
               </div>
             </div>
-          {{else}}
-            <div class="bid-input">
-              <div class="inner-addon left-addon">
-                <img
-                  class="glyphicon"
-                  style="height: 22px"
-                  src="/assets/images/eth.svg"
-                  alt=""
-                />
-                {{input
-                  class="form-control"
-                  type="number"
-                  placeholder="0.00"
-                  value=bidAmount
-                  min=0
-                  max=maxBid
-                  step="0.05"
-                  key-down="restrictAmount"
-                  key-up="validateAmount"
-                }}
+            {{#if bidPlaced}}
+              <div class="bid-complete">
+                <p>Your bid of {{bidAmount}} ETH has been successfully placed!</p>
+                <p>If the bid is accepted your ETH will be transferred and the
+                  artwork will be transferred to your Gallery.</p>
+                <div class="bid-again-button">
+                  <a class="button" {{action "bidAgain"}}>Bid Again</a>
+                </div>
               </div>
-              <div class="bid-button">
-                {{#if bidMetOffer}}
-                  <a class="button" {{action "placeBid"}}>Buy</a>
-                {{else}}
-                  <a class="button" {{action "placeBid"}}>Bid</a>
-                {{/if}}
+            {{else}}
+              <div class="bid-input">
+                <div class="inner-addon left-addon">
+                  <img
+                    class="glyphicon"
+                    style="height: 22px"
+                    src="/assets/images/eth.svg"
+                    alt=""
+                  />
+                  {{input
+                    class="form-control"
+                    type="number"
+                    placeholder="0.00"
+                    value=bidAmount
+                    min=0
+                    max=maxBid
+                    step="0.05"
+                    key-down="restrictAmount"
+                    key-up="validateAmount"
+                  }}
+                </div>
+                <div class="bid-button">
+                  {{#if bidMetOffer}}
+                    <a class="button" {{action "placeBid"}}>Buy</a>
+                  {{else}}
+                    <a class="button" {{action "placeBid"}}>Bid</a>
+                  {{/if}}
+                </div>
               </div>
-            </div>
-          {{/if}}
-        {{/unless}}
+            {{/if}}
+          {{/unless}}
+        </div>
       </div>
     </div>
-  </div>
-{{/modal-dialog}}
+  {{/modal-dialog}}
 
-Transaction validating on Ethereum Network. Validation may take up to 1 minute,
-please do not refresh page.
+  Transaction validating on Ethereum Network. Validation may take up to 1 minute,
+  please do not refresh page.
+</div>

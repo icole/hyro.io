@@ -2,10 +2,11 @@ import Component from '@ember/component';
 import Intense from 'intense-images';
 
 export default Component.extend({
+  tagName: "",
 
   actions: {
     openCertificateModal(edition) {
-      this.get('openCertificateModal')(edition);
+      this.openCertificateModal(edition);
     },
     openMessageModal() {
       const messageModal = document.querySelector('.artist-message-overlay') || null;
@@ -28,7 +29,7 @@ export default Component.extend({
       });
     },
     toggleOfferModal(artEdition) {
-      this.get('toggleOfferModal')(artEdition)
+      this.toggleOfferModal(artEdition)
     },
     enlargePiece(previewImage) {
       this.set("enlargedImage", previewImage);

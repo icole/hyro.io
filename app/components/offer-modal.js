@@ -1,29 +1,28 @@
+import { tagName } from "@ember-decorators/component";
 import classic from 'ember-classic-decorator';
 import { action, computed } from '@ember/object';
 import { inject } from '@ember/service';
 import Component from "@ember/component";
 
+@tagName("")
 @classic
 export default class OfferModal extends Component {
-  @inject("web3")
-  web3;
-
-  @inject("current-user")
-  currentUser;
+  @inject("web3") web3;
+  @inject("current-user") currentUser;
 
   offerPlaced = false;
   offerProcessing = false;
   offerAmount = null;
   offerResult = null;
 
-  @computed("offerResult")
+  @computed('offerResult.transactionHash')
   get ethscanLink() {
     return `https://rinkeby.etherscan.io/tx/${this.get("offerResult.transactionHash")}`;
   }
 
   @computed("offerAmount")
   get calculatedPayout() {
-    let offerAmount = this.get("offerAmount");
+    let offerAmount = this.offerAmount;
     if (offerAmount !== null) {
       return parseFloat((offerAmount * 0.9).toPrecision(10).toString());
     } else {
@@ -31,14 +30,14 @@ export default class OfferModal extends Component {
     }
   }
 
-  @computed("offerAmount")
+  @computed('editionOffered.highestBid', 'offerAmount')
   get offerMetBid() {
-    const offer = parseFloat(this.get("offerAmount"));
+    const offer = parseFloat(this.offerAmount);
     const bid = parseFloat(this.get("editionOffered.highestBid"));
     return bid > 0 && offer > 0 && offer <= bid;
   }
 
-  @computed("highestBid")
+  @computed('editionOffered.highestBid', 'highestBid')
   get minOffer() {
     return this.get("editionOffered.highestBid") > 0 ? this.get("editionOffered.highestBid") : 0;
   }
@@ -50,13 +49,13 @@ export default class OfferModal extends Component {
 
   @action
   async placeOffer() {
-    let web3 = this.get("web3");
+    let web3 = this.web3;
     let contract = web3.get("contract");
     let marketplaceContract = web3.get("marketplaceContract");
-    let offerAmount = parseFloat(this.get("offerAmount"));
+    let offerAmount = parseFloat(this.offerAmount);
     let artPieceId = this.get("editionOffered.artPiece.id");
     let edition = this.get("editionOffered.edition");
-    await this.get("currentUser").load();
+    await this.currentUser.load();
 
     if (contract) {
       if (offerAmount) {
@@ -139,7 +138,7 @@ export default class OfferModal extends Component {
 
   @action
   validateAmount() {
-    let newAmount = this.get("offerAmount");
+    let newAmount = this.offerAmount;
     if (!newAmount.split(".")[0] && newAmount.split(".")[1]) {
       newAmount = "0" + newAmount;
     }

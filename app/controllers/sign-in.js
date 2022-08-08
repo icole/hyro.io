@@ -5,17 +5,10 @@ import Controller from '@ember/controller';
 
 @classic
 export default class SignInController extends Controller {
-  @inject('web3')
-  web3;
-
-  @inject()
-  store;
-
-  @inject('session')
-  session;
-
-  @inject('current-user')
-  currentUser;
+  @inject('web3') web3;
+  @inject() store;
+  @inject('session') session;
+  @inject('current-user') currentUser;
 
   @action
   async createUser() {
@@ -33,7 +26,7 @@ export default class SignInController extends Controller {
     //  email: this.get('model.email'),
     //  password: this.get('model.password')
     //});
-    await this.get('currentUser').load();
+    await this.currentUser.load();
     this.transitionToRoute('featured-piece');
     //}).catch(function (reason) {
     //  console.error(reason);
