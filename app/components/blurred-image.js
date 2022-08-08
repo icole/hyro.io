@@ -1,6 +1,8 @@
+import classic from 'ember-classic-decorator';
 import Component from '@ember/component';
 
-export default Component.extend({
+@classic
+export default class BlurredImage extends Component {
   mouseMove(event) {
     event.preventDefault();
     let container = document.querySelector(".blur").getBoundingClientRect();
@@ -10,4 +12,4 @@ export default Component.extend({
     mask.setAttribute("cy", (upY - container.top) + 'px');
     mask.setAttribute("cx", (upX - container.left) + 'px');
   }
-});
+}

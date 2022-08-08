@@ -1,10 +1,13 @@
-import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
 import { inject } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Route.extend({
-  web3: inject('web3'),
+@classic
+export default class FeaturedPieceRoute extends Route {
+  @inject('web3')
+  web3;
 
   model() {
     return this.store.findRecord('art-piece', 1);
   }
-});
+}

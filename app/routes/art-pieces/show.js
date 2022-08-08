@@ -1,14 +1,21 @@
-import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
+import { observes } from '@ember-decorators/object';
 import { inject } from '@ember/service';
-import { observer } from '@ember/object';
+import Route from '@ember/routing/route';
+import '@ember/object';
 
-export default Route.extend({
-  currentUser: inject('current-user'),
-  web3: inject('web3'),
+@classic
+export default class ShowRoute extends Route {
+  @inject('current-user')
+  currentUser;
 
-  contractObserver: observer('web3.contract', function() {
+  @inject('web3')
+  web3;
+
+  @observes('web3.contract')
+  contractObserver() {
     this.refresh();
-  }),
+  }
 
   async model(params) {
     let web3 = this.get('web3');
@@ -35,4 +42,4 @@ export default Route.extend({
       }
     }
   }
-});
+}

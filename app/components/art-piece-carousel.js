@@ -1,12 +1,15 @@
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 import Component from '@ember/component';
 
-export default Component.extend({
-  carousel: null,
-  leftScroll: null,
-  rightScroll: null,
+@classic
+export default class ArtPieceCarousel extends Component {
+  carousel = null;
+  leftScroll = null;
+  rightScroll = null;
 
   didInsertElement() {
-    this._super(...arguments);
+    super.didInsertElement(...arguments);
     this.set('carousel', {});
     this.set('carousel.e', document.getElementById('gallery-carousel'));
     this.set('carousel.items', document.getElementById('carousel-items'));
@@ -14,7 +17,7 @@ export default Component.extend({
     this.set('rightScroll', document.getElementById('right-scroll-carousel-button'));
 
     this.setScrollOpacity();
-  },
+  }
 
   MouseWheelHandler(e, element) {
     var delta = 0;
@@ -31,7 +34,7 @@ export default Component.extend({
 
     element.scrollLeft -= (delta);
     this.setScrollOpacity();
-  },
+  }
 
   setLeftScrollOpacity() {
     if (this.isScrolledAllLeft()) {
@@ -39,11 +42,11 @@ export default Component.extend({
     } else {
       this.set('leftScroll.style.opacity', 1);
     }
-  },
+  }
 
   isScrolledAllLeft() {
     return this.get('carousel.items.scrollLeft') === 0;
-  },
+  }
 
   isScrolledAllRight() {
     const items = this.get('carousel.items');
@@ -56,7 +59,7 @@ export default Component.extend({
     }
 
     return false;
-  },
+  }
 
   setRightScrollOpacity() {
     if (this.isScrolledAllRight()) {
@@ -64,24 +67,25 @@ export default Component.extend({
     } else {
       this.set('rightScroll.style.opacity', 1);
     }
-  },
+  }
 
   setScrollOpacity() {
     this.setLeftScrollOpacity();
     this.setRightScrollOpacity();
-  },
+  }
 
-  actions: {
-    leftScrollClick() {
-      this.MouseWheelHandler(100, this.get('carousel.items'));
-    },
+  @action
+  leftScrollClick() {
+    this.MouseWheelHandler(100, this.get('carousel.items'));
+  }
 
-    rightScrollClick() {
-      this.MouseWheelHandler(-100, this.get('carousel.items'));
-    },
+  @action
+  rightScrollClick() {
+    this.MouseWheelHandler(-100, this.get('carousel.items'));
+  }
 
-    updateSelectedPiece(pieceId) {
-      this.get('updateSelectedPiece')(pieceId);
-    }
-  },
-});
+  @action
+  updateSelectedPiece(pieceId) {
+    //this.get('updateSelectedPiece')(pieceId);
+  }
+}

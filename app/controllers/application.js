@@ -1,12 +1,16 @@
-import Controller from '@ember/controller';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Controller.extend({
-  disableHeader: computed('currentPath', function () {
+@classic
+export default class ApplicationController extends Controller {
+  @computed('currentPath')
+  get disableHeader() {
     this.get('currentPath') == 'gallery-display.display';
-  }),
+  }
 
-  disableFooter: computed('currentPath', function () {
+  @computed('currentPath')
+  get disableFooter() {
     this.get('currentPath') == 'gallery-display.display';
-  }),
-});
+  }
+}

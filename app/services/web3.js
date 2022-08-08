@@ -1,36 +1,46 @@
+import classic from 'ember-classic-decorator';
+import { computed } from '@ember/object';
 import Service, { inject } from "@ember/service";
-import { computed } from "@ember/object";
 import config from "ember-get-config";
 import Web3 from "web3";
 import contract from "truffle-contract";
 
-export default Service.extend({
-  session: inject("session"),
-  router: inject(),
-  store: inject(),
-  web3Instance: null,
-  accounts: null,
-  account: null,
-  networkId: null,
-  contract: null,
-  marketplaceContract: null,
+@classic
+export default class Web3Service extends Service {
+  @inject("session")
+  session;
 
-  wrongNetwork: computed("networkId", function () {
+  @inject()
+  router;
+
+  @inject()
+  store;
+
+  web3Instance = null;
+  accounts = null;
+  account = null;
+  networkId = null;
+  contract = null;
+  marketplaceContract = null;
+
+  @computed("networkId")
+  get wrongNetwork() {
     return (
       config.environment === "production" &&
       this.get("networkId") &&
       this.get("networkId") !== "4"
     );
-  }),
+  }
 
-  locked: computed("account", "web3Instance", function () {
+  @computed("account", "web3Instance")
+  get locked() {
     return this.get("web3Instance") && !this.get("account");
-  }),
+  }
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.initUpdatePoll();
-  },
+  }
 
   async initUpdatePoll() {
     let _this = this;
@@ -63,7 +73,7 @@ export default Service.extend({
         _this.instantiateMarketplace();
       }
     }
-  },
+  }
 
   instantiateGallery() {
     let self = this;
@@ -75,7 +85,7 @@ export default Service.extend({
         self.set("contract", gallery);
       }
     );
-  },
+  }
 
   instantiateMarketplace() {
     let self = this;
@@ -88,5 +98,5 @@ export default Service.extend({
         self.set("marketplaceContract", marketplace);
       }
     );
-  },
-});
+  }
+}

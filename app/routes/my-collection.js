@@ -1,8 +1,11 @@
-import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
 import { inject } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Route.extend({
-  currentUser: inject('current-user'),
+@classic
+export default class MyCollectionRoute extends Route {
+  @inject('current-user')
+  currentUser;
 
   async model() {
     await this.get('currentUser').load();
@@ -11,4 +14,4 @@ export default Route.extend({
     })];
     return galleryEditions;
   }
-});
+}

@@ -1,33 +1,40 @@
-import Component from '@ember/component';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 import { inject } from '@ember/service';
+import Component from '@ember/component';
 
-export default Component.extend({
-  router: inject(),
-  currentUser: inject('current-user'),
+@classic
+export default class MarketplaceMenu extends Component {
+  @inject()
+  router;
 
-  actions: {
-    closeMenu() {
-      let menu = document.querySelector('.menu');
+  @inject('current-user')
+  currentUser;
 
-      menu.querySelector('.bg').style.opacity = 0;
+  @action
+  closeMenu() {
+    let menu = document.querySelector('.menu');
 
-      let menuItems = [...menu.querySelectorAll('li')];
+    menu.querySelector('.bg').style.opacity = 0;
 
-      for (let i = 0; i < menuItems.length; i++) {
-        menuItems[i].classList.remove('active');
-      }
+    let menuItems = [...menu.querySelectorAll('li')];
 
-      menu.classList.remove('active');
+    for (let i = 0; i < menuItems.length; i++) {
+      menuItems[i].classList.remove('active');
+    }
 
-      setTimeout(() => {
-        menu.querySelector('.bg').style.display = "none";
-        menu.style.display = "none";
-      }, 500);
-    },
-    userLogout() {
-      this.get('session').invalidate('authenticator:custom');
-      this.actions.closeMenu();
-      this.get('router').transitionTo('index');
-    },
+    menu.classList.remove('active');
+
+    setTimeout(() => {
+      menu.querySelector('.bg').style.display = "none";
+      menu.style.display = "none";
+    }, 500);
   }
-});
+
+  @action
+  userLogout() {
+    this.get('session').invalidate('authenticator:custom');
+    this.actions.closeMenu();
+    this.get('router').transitionTo('index');
+  }
+}

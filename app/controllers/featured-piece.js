@@ -1,4 +1,4 @@
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-});
+// eslint-disable-next-line prettier/prettier
+export default class FeaturedPiece extends Controller { }

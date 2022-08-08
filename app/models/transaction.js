@@ -1,22 +1,43 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import DS from 'ember-data';
 const { Model, attr, belongsTo } = DS;
 
-export default Model.extend({
-  amount: attr('number'),
-  edition: attr('number'),
-  tx_hash: attr('string'),
-  tx_type: attr('string'),
-  ethscanLink: computed('tx_hash', function() {
+@classic
+export default class Transaction extends Model {
+  @attr('number')
+  amount;
+
+  @attr('number')
+  edition;
+
+  @attr('string')
+  tx_hash;
+
+  @attr('string')
+  tx_type;
+
+  @computed('tx_hash')
+  get ethscanLink() {
     return `https://rinkeby.etherscan.io/tx/${this.get('tx_hash')}`;
-  }),
-  typeDisplay: computed('tx_type', function() {
+  }
+
+  @computed('tx_type')
+  get typeDisplay() {
     return this.get('tx_type') ? this.get('tx_type').charAt(0).toUpperCase() + this.get('tx_type').slice(1) : '';
-  }),
-  createdAt: attr('string'),
-  dateDisplay: computed('createdAt', function() {
+  }
+
+  @attr('string')
+  createdAt;
+
+  @computed('createdAt')
+  get dateDisplay() {
     return new Date(this.get('createdAt')).toLocaleDateString();
-  }),
-  artPiece: belongsTo('art-piece'),
-  user: belongsTo('user')
-});
+  }
+
+  @belongsTo('art-piece')
+  artPiece;
+
+  @belongsTo('user')
+  user;
+}

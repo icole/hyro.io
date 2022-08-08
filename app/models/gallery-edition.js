@@ -1,22 +1,45 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
+import DS from 'ember-data';
 const { Model, attr, belongsTo } = DS;
 
-export default Model.extend({
-  edition: attr('number'),
-  owner: attr('string'),
-  highestBid: attr('number'),
-  lowestOffer: attr('number'),
-  bidAmount: attr('number'),
-  offerAmount: attr('number'),
-  artPiece: belongsTo('art-piece'),
-  claimedAt: attr('string'),
-  txHash: attr('string'),
-  dateDisplay: computed('claimedAt', function() {
+@classic
+export default class GalleryEdition extends Model {
+  @attr('number')
+  edition;
+
+  @attr('string')
+  owner;
+
+  @attr('number')
+  highestBid;
+
+  @attr('number')
+  lowestOffer;
+
+  @attr('number')
+  bidAmount;
+
+  @attr('number')
+  offerAmount;
+
+  @belongsTo('art-piece')
+  artPiece;
+
+  @attr('string')
+  claimedAt;
+
+  @attr('string')
+  txHash;
+
+  @computed('claimedAt')
+  get dateDisplay() {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(this.get('claimedAt')).toLocaleDateString("en-US", options);
-  }),
-  ethscanLink: computed('txHash', function() {
+  }
+
+  @computed('txHash')
+  get ethscanLink() {
     return `https://rinkeby.etherscan.io/tx/${this.get('txHash')}`;
-  }),
-});
+  }
+}

@@ -1,33 +1,42 @@
-import Controller from '@ember/controller';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 import { inject } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Controller.extend({
-  web3: inject('web3'),
-  store: inject(),
-  session: inject('session'),
-  currentUser: inject('current-user'),
+@classic
+export default class SignInController extends Controller {
+  @inject('web3')
+  web3;
 
-  actions: {
-    async createUser() {
-      //let self = this;
-      //let msg = ethUtil.bufferToHex(new buffer.Buffer('Hyro Sign In', 'utf8'));
-      //let from = this.get('model.address');
-      //let eth = new Eth(this.get('web3.web3Instance.currentProvider'));
+  @inject()
+  store;
 
-      //let signed = await eth.personal_sign(msg, from);
-      //this.set('model.password', signed);
-      //console.log('Signed: ' + signed);
-      //this.get('model').save().then(function () {
-      //await this.get('session').authenticate('authenticator:token', {
-      //  strategy: "local",
-      //  email: this.get('model.email'),
-      //  password: this.get('model.password')
-      //});
-      await this.get('currentUser').load();
-      this.transitionToRoute('featured-piece');
-      //}).catch(function (reason) {
-      //  console.error(reason);
-      //});
-    }
+  @inject('session')
+  session;
+
+  @inject('current-user')
+  currentUser;
+
+  @action
+  async createUser() {
+    //let self = this;
+    //let msg = ethUtil.bufferToHex(new buffer.Buffer('Hyro Sign In', 'utf8'));
+    //let from = this.get('model.address');
+    //let eth = new Eth(this.get('web3.web3Instance.currentProvider'));
+
+    //let signed = await eth.personal_sign(msg, from);
+    //this.set('model.password', signed);
+    //console.log('Signed: ' + signed);
+    //this.get('model').save().then(function () {
+    //await this.get('session').authenticate('authenticator:token', {
+    //  strategy: "local",
+    //  email: this.get('model.email'),
+    //  password: this.get('model.password')
+    //});
+    await this.get('currentUser').load();
+    this.transitionToRoute('featured-piece');
+    //}).catch(function (reason) {
+    //  console.error(reason);
+    //});
   }
-});
+}

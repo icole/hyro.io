@@ -1,49 +1,87 @@
-import DS from 'ember-data';
+import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
-const { Model, attr, hasMany, belongsTo } = DS;
 import { inject } from '@ember/service';
+import DS from 'ember-data';
+const { Model, attr, hasMany, belongsTo } = DS;
 
-export default Model.extend({
-  assetMap: inject('asset-map'),
+@classic
+export default class ArtPiece extends Model {
+  @inject('asset-map')
+  assetMap;
 
-  artist: attr('string'),
-  name: attr('string'),
-  description: attr('string'),
-  image: attr('string'),
-  ipfsHash: attr('string'),
-  editions: attr('number'),
-  claimed: attr('number'),
-  nextEdition: computed('claimed', function() {
+  @attr('string')
+  artist;
+
+  @attr('string')
+  name;
+
+  @attr('string')
+  description;
+
+  @attr('string')
+  image;
+
+  @attr('string')
+  ipfsHash;
+
+  @attr('number')
+  editions;
+
+  @attr('number')
+  claimed;
+
+  @computed('claimed')
+  get nextEdition() {
     if (this.get('claimed') === this.get('editions')) {
       return this.get('claimed');
     } else {
       return this.get('claimed') + 1;
     }
-  }),
-  status: computed('claimed', function() {
+  }
+
+  @computed('claimed')
+  get status() {
     if (this.get('soldOut')) {
       return 'SOLD OUT';
     } else {
       return 'Available';
     }
-  }),
-  soldOut: computed('claimed', function() {
+  }
+
+  @computed('claimed')
+  get soldOut() {
     return this.get('claimed') === this.get('editions');
-  }),
-  highestBid: attr('number'),
-  lowestOffer: attr('number'),
-  artEditions: hasMany('art-edition'),
-  gallery: belongsTo('gallery'),
-  fullImage: computed('ipfsHash', function() {
+  }
+
+  @attr('number')
+  highestBid;
+
+  @attr('number')
+  lowestOffer;
+
+  @hasMany('art-edition')
+  artEditions;
+
+  @belongsTo('gallery')
+  gallery;
+
+  @computed('ipfsHash')
+  get fullImage() {
     return `https://ipfs.io/ipfs/${this.get('ipfsHash')}`;
-  }),
-  previewImage: computed('image', function() {
+  }
+
+  @computed('image')
+  get previewImage() {
     return this.get('image') + '_preview';
-  }),
-  previewImagePath: computed('image', function() {
+  }
+
+  @computed('image')
+  get previewImagePath() {
     return this.get('image') ? this.get('assetMap').resolve(`assets/images/${this.get('image')}_preview.png`) : '';
-  }),
-  blurredImage: computed('image', function() {
+  }
+
+  @computed('image')
+  get blurredImage() {
     return this.get('image') + '_blurred';
-  }),
-});
+  }
+}

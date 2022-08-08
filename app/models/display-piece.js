@@ -1,8 +1,15 @@
+import classic from 'ember-classic-decorator';
 import DS from 'ember-data';
 const { Model, attr, belongsTo } = DS;
 
-export default Model.extend({
-  artPiece: belongsTo('art-piece'),
-  owner: attr('string'),
-  showDescription: attr('boolean')
-});
+@classic
+export default class DisplayPiece extends Model {
+  @belongsTo('art-piece')
+  artPiece;
+
+  @attr('string')
+  owner;
+
+  @attr('boolean')
+  showDescription;
+}

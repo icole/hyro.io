@@ -1,12 +1,15 @@
-import Component from '@ember/component';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 import { inject } from '@ember/service';
+import Component from '@ember/component';
 
-export default Component.extend({
-  web3: inject('web3'),
+@classic
+export default class LogIn extends Component {
+  @inject('web3')
+  web3;
 
-  actions: {
-    createUser() {
-      this.get('createUser')();
-    }
+  @action
+  createUser() {
+    //this.get('createUser')();
   }
-});
+}
