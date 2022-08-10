@@ -1,5 +1,5 @@
 import classic from 'ember-classic-decorator';
-const { Model, attr } = '@ember/data';
+import Model, { attr } from '@ember-data/model';
 
 @classic
 export default class User extends Model {

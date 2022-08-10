@@ -1,32 +1,32 @@
-<div class="hero what">
-  <div class="container">
-    <div class="img right">
-      <img src="{{asset-map (concat "assets/images/" model.blurredImage ".png")}}" alt=""/>
+<div class='hero what'>
+  <div class='container'>
+    <div class='img right'>
+      <img src='{{asset-map (concat "assets/images/" @model.blurredImage ".png")}}' alt='' />
     </div>
-    <div class="content">
-      <h2>{{model.name}}</h2>
-      <h3>{{model.artist}}</h3>
-      <p>{{model.description}}</p>
-      <p><span><b>Status</b> : </span> {{model.status}}</p>
-      <div class="release">
+    <div class='content'>
+      <h2>{{@model.name}}</h2>
+      <h3>{{@model.artist}}</h3>
+      <p>{{@model.description}}</p>
+      <p><span><b>Status</b> : </span> {{@model.status}}</p>
+      <div class='release'>
         <div>
-          <span class="eth-amount">{{format-amount model.highestBid}}</span>
-          <br/>
+          <span class='eth-amount'>{{format-amount @model.highestBid}}</span>
+          <br />
           <span>Highest Bid</span>
         </div>
         <div>
-          <span class="eth-amount">{{format-amount model.lowestOffer}}</span>
-          <br/>
+          <span class='eth-amount'>{{format-amount @model.lowestOffer}}</span>
+          <br />
           <span>Lowest Listing</span>
-        </div>  
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="description">
-  <div class="container">
+<div class='description'>
+  <div class='container'>
     <h1>Marketplace</h1>
-    {{art-piece-bids artPiece=model}}
+    <ArtPieceBids @artPiece={{@model}} />
   </div>
 </div>

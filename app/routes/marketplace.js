@@ -6,8 +6,8 @@ import '@ember/object';
 
 @classic
 export default class MarketplaceRoute extends Route {
-  @inject('web3')
-  web3;
+  @inject('web3') web3;
+  @inject store;
 
   @observes('web3.contract')
   contractObserver() {
@@ -15,7 +15,7 @@ export default class MarketplaceRoute extends Route {
   }
 
   async model() {
-    let web3 = this.get('web3');
+    let web3 = this.web3;
     let contract = web3.get('contract');
     if (contract) {
       let artPieces = await this.store.findAll('art-piece');

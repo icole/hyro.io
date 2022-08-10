@@ -6,18 +6,16 @@ import JWT from 'ember-simple-auth-token/authenticators/jwt';
 
 @classic
 export default class CurrentUserService extends Service {
-  @inject('session')
-  session;
+  @inject('session') session;
 
-  @inject()
-  store;
+  @inject() store;
 
   load() {
     //const token = this.get('session.data.authenticated.accessToken');
     //if (!isEmpty(token)) {
     //  const userId = this.getUserIdFromToken(token);
     const userId = 1;
-    return this.get('store').find('user', userId).then((user) => {
+    return this.store.find('user', userId).then((user) => {
       this.set('user', user);
     });
     //} else {

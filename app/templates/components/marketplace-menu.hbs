@@ -1,29 +1,21 @@
 <div ...attributes>
-  <div class="menu">
-    <div class="bg"></div>
+  <div class='menu'>
+    <div class='bg'></div>
     {{! <img src="/assets/images/circle.svg" class="circle" alt=""/> }}
-    <ul class="list">
-      <li class="nomovement"><a class="close" href="#!"><i class="fa fa-times-circle-o"></i></a></li>
-      <li>{{#link-to "index" invokeAction=(action "closeMenu")}}Home{{/link-to}}</li>
-      <li>{{#link-to "featured-piece" invokeAction=(action "closeMenu")}}Featured Piece{{/link-to}}</li>
-      {{#unless currentUser.user}}
-        <li>
-          {{#link-to "sign-in" invokeAction="closeMenu"}}
-            Sign in
-          {{/link-to}}
-        </li>
-      {{else}}
-        <li>{{#link-to "my-collection" invokeAction=(action "closeMenu")}}My Collection{{/link-to}}</li>
-        <li>{{#link-to "galleries" invokeAction=(action "closeMenu")}}Browse Galleries{{/link-to}}</li>
-        <li>{{#link-to "marketplace" invokeAction=(action "closeMenu")}}Collector Marketplace{{/link-to}}</li>
-        <li><a href="#!" {{action "userLogout"}}>Logout</a></li>
-      {{/unless}}
-      <li class="line nomovement"><a></a></li>
-      <li class="nomovement">
-        <a href="#!"><i class="fa fa-facebook"></i></a>
-        <a href="#!"><i class="fa fa-twitter"></i></a>
-        <a href="#!"><i class="fa fa-telegram"></i></a>
+    <ul class='list'>
+      <li class='nomovement'><a class='close' href='#!'><i class='fa fa-times-circle-o'></i></a></li>
+      <li><LinkTo @route='index'>Home</LinkTo></li>
+      <li><LinkTo @route='featured-piece'>Featured Piece</LinkTo></li>
+      <li>
+        <LinkTo @route='sign-in'>
+          Sign in
+        </LinkTo>
       </li>
+      <li><LinkTo @route='my-collection'>My Collection</LinkTo></li>
+      <li><LinkTo @route='galleries'>Browse Galleries</LinkTo></li>
+      <li><LinkTo @route='marketplace'>Collector Marketplace</LinkTo></li>
+      <li><a href='#!' {{action 'userLogout'}}>Logout</a></li>
+      <li class='line nomovement'><a></a></li>
     </ul>
   </div>
 </div>

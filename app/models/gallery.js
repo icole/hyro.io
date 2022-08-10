@@ -1,6 +1,6 @@
 import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
-import { Model, attr, hasMany } from '@ember/data';
+import Model, { attr, hasMany } from '@ember-data/model';
 
 @classic
 export default class Gallery extends Model {

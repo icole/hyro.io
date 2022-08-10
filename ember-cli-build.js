@@ -4,26 +4,16 @@ const EmberApp = require("ember-cli/lib/broccoli/ember-app");
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
-    autoImport: {
-      webpack: {
-        node: {
-          crypto: true,
-          stream: true,
-          assert: true,
-          http: true,
-          https: true,
-          os: true,
-          buffer: true,
-        },
-      },
-    },
-    fingerprint: {
-      enabled: EmberApp.env() === "production",
-      prepend:
-        EmberApp.env() === "production" ? process.env.FINGERPRINT_PREPEND : "/",
-      generateAssetMap: true,
-      fingerprintAssetMap: true,
-    },
+    // fingerprint: {
+    //   enabled: EmberApp.env() === "production",
+    //   prepend:
+    //     EmberApp.env() === "production" ? process.env.FINGERPRINT_PREPEND : "/",
+    //   generateAssetMap: true,
+    //   fingerprintAssetMap: true,
+    // },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -39,9 +29,9 @@ module.exports = function (defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  app.import("node_modules/@tholman/intense-images/intense.js", {
-    using: [{ transformation: "cjs", as: "intense-images" }],
-  });
+  // app.import("node_modules/@tholman/intense-images/intense.js", {
+  //   using: [{ transformation: "cjs", as: "intense-images" }],
+  // });
 
   return app.toTree();
 };

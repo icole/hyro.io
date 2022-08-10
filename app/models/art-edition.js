@@ -1,6 +1,6 @@
 import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
-import { Model, attr, belongsTo } from '@ember/data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 @classic
 export default class ArtEdition extends Model {
@@ -14,6 +14,6 @@ export default class ArtEdition extends Model {
 
   @computed('artPiece.claimed', 'edition')
   get claimed() {
-    return this.edition <= this.get('artPiece.claimed');
+    return this.edition <= this.artPiece.claimed;
   }
 }

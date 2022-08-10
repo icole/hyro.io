@@ -1,7 +1,7 @@
 import classic from 'ember-classic-decorator';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
-import { Model, attr, hasMany, belongsTo } from '@ember/data';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 @classic
 export default class ArtPiece extends Model {

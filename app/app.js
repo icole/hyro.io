@@ -1,14 +1,11 @@
-import classic from 'ember-classic-decorator';
 import Application from "@ember/application";
 import Resolver from "ember-resolver";
 import loadInitializers from "ember-load-initializers";
-import config from "./config/environment";
+import config from "hyro/config/environment";
 
-@classic
 class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;
-
   Resolver = Resolver;
   // engines: {
   //   galleryDisplay: {

@@ -1,35 +1,40 @@
 <div ...attributes>
-  <div class="hero what">
-    <div class="container">
-      <div class="img right">
-        <img class="collection-img" data-image="{{edition.artPiece.fullImage}}" src={{asset-map (concat "assets/images/" edition.artPiece.previewImage ".png")}} alt=""/>
+  <div class='hero what'>
+    <div class='container'>
+      <div class='img right'>
+        <img
+          class='collection-img'
+          data-image='{{@edition.artPiece.fullImage}}'
+          src={{asset-map (concat 'assets/images/' @edition.artPiece.previewImage '.png')}}
+          alt=''
+        />
       </div>
-      <div class="content">
-        <h2>{{edition.artPiece.name}}</h2>
-        <h3>{{edition.artPiece.artist}}</h3>
-        <p>{{edition.artPiece.description}}</p>
-        <a class="offers button" onClick={{action 'toggleOfferModal' edition}}>Manage Listing</a>
-        <div class="release">
+      <div class='content'>
+        <h2>{{@edition.artPiece.name}}</h2>
+        <h3>{{@edition.artPiece.artist}}</h3>
+        <p>{{@edition.artPiece.description}}</p>
+        <a class='offers button' onClick={{action 'toggleOfferModal' @edition}}>Manage Listing</a>
+        <div class='release'>
           <div>
-            <p><span>Edition : </span> {{edition.edition}}</p>
+            <p><span>Edition : </span> {{@edition.edition}}</p>
           </div>
           <div>
-            <span class="eth-amount">{{format-amount edition.highestBid}}</span>
-            <br/>
+            <span class='eth-amount'>{{format-amount @edition.highestBid}}</span>
+            <br />
             <span>Highest Bid</span>
           </div>
           <div>
-            <span class="eth-amount">{{format-amount edition.lowestOffer}}</span>
-            <br/>
+            <span class='eth-amount'>{{format-amount @edition.lowestOffer}}</span>
+            <br />
             <span>My List Price</span>
           </div>
         </div>
       </div>
-      <div class="release">
+      <div class='release'>
         <p><span>More Ways To Enjoy Your Art : </span></p>
-        <div class="more-buttons">
-          <a class="certificate button" onClick={{action 'openCertificateModal' edition}}>View Certificate</a>
-          <a class="artist-message button" {{action 'openMessageModal'}}>View Secret Message</a>
+        <div class='more-buttons'>
+          <a class='certificate button' onClick={{action 'openCertificateModal' @edition}}>View Certificate</a>
+          <a class='artist-message button' {{action 'openMessageModal'}}>View Secret Message</a>
         </div>
       </div>
     </div>

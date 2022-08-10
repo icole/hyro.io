@@ -1,16 +1,21 @@
 import classic from 'ember-classic-decorator';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 @classic
 export default class MyCollectionRoute extends Route {
-  @inject('current-user')
-  currentUser;
+  //@service('current-user') currentUser;
+  @service store;
+  currentUser = {
+    user: {
+      id: 1
+    }
+  }
 
   async model() {
-    await this.get('currentUser').load();
+    //await this.currentUser.load();
     let galleryEditions = [await this.store.queryRecord('gallery-edition', {
-      user: this.get('currentUser').user.id
+      user: this.currentUser.user.id
     })];
     return galleryEditions;
   }

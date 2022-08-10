@@ -7,8 +7,8 @@ import Component from '@ember/component';
 @tagName("")
 @classic
 export default class MarketplaceMenu extends Component {
+  @inject() session;
   @inject() router;
-  @inject('current-user') currentUser;
 
   @action
   closeMenu() {

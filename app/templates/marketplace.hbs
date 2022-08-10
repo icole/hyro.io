@@ -1,42 +1,42 @@
- <div class="description">
-  <div class="container">
+<div class='description'>
+  <div class='container'>
     <h1>Past Hyro Artwork</h1>
     <p>
-      Get a glimpse of the Digital Art, Artists, and Charities previously featured on Hyro.<br/>
+      Get a glimpse of the Digital Art, Artists, and Charities previously featured on Hyro.<br />
       These pieces are no longer avaible, but you can find our currently featured piece here!
     </p>
 
-    <div class="gallery-buttons">
-      {{#link-to "bids" class="button"}}My Current Bids{{/link-to}}
-      {{#link-to "transactions" class="button"}}Transactions{{/link-to}}
+    <div class='gallery-buttons'>
+      <LinkTo @route='bids' class='button'>My Current Bids</LinkTo>
+      <LinkTo @route='transactions' class='button'>Transactions</LinkTo>
     </div>
   </div>
 </div>
 
-{{#each orderedPieces as |art-piece|}}
-  <div class="hero what">
-    <div class="container">
-      <div class="img right">
-        <img src={{asset-map (concat "assets/images/" art-piece.blurredImage ".png")}} alt=""/>
+{{#each @orderedPieces as |art-piece|}}
+  <div class='hero what'>
+    <div class='container'>
+      <div class='img right'>
+        <img src={{asset-map (concat 'assets/images/' art-piece.blurredImage '.png')}} alt='' />
       </div>
-      <div class="content">
+      <div class='content'>
         <h2>{{art-piece.name}}</h2>
         <h3>{{art-piece.artist}}</h3>
         <p>{{art-piece.description}}</p>
         <p><span><b>Status</b> : </span> {{art-piece.status}}</p>
-        <div class="release">
+        <div class='release'>
           <div>
-            <span class="eth-amount">{{format-amount art-piece.highestBid}}</span>
-            <br/>
+            <span class='eth-amount'>{{format-amount art-piece.highestBid}}</span>
+            <br />
             <span>Highest Bid</span>
           </div>
           <div>
-            <span class="eth-amount">{{format-amount art-piece.lowestOffer}}</span>
-            <br/>
+            <span class='eth-amount'>{{format-amount art-piece.lowestOffer}}</span>
+            <br />
             <span>Lowest Listing</span>
           </div>
           <div>
-            {{#link-to "art-pieces.show" art-piece.id class="button"}}Bid{{/link-to}}
+            <LinkTo @route='art-pieces.show' @model={{art-piece}} class='button'>Bid</LinkTo>
           </div>
         </div>
       </div>
@@ -44,10 +44,10 @@
   </div>
 {{/each}}
 
-<div class="description">
-  <div class="container">
+<div class='description'>
+  <div class='container'>
     <h1>Featured Piece</h1>
     <p>Want to build your collection? View our currently available digital artwork now!</p>
-    {{#link-to "featured-piece" class="button"}}Get Started{{/link-to}}
+    <LinkTo @route='featured-piece' class='button'>Get Started</LinkTo>
   </div>
 </div>

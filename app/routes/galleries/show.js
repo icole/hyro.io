@@ -1,9 +1,11 @@
 import classic from 'ember-classic-decorator';
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 @classic
 export default class ShowRoute extends Route {
   galleryPieces = null;
+  @service store;
 
   async model(params) {
     let galleryPieces = await this.store.query('art-piece', {

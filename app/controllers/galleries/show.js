@@ -7,6 +7,7 @@ import Controller from "@ember/controller";
 export default class ShowController extends Controller {
   @inject("web3") web3;
   @inject("session") session;
+  @inject store;
   @inject("current-user") currentUser;
 
   orderProcessing = false;

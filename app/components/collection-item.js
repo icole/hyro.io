@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import Intense from 'intense-images';
+//import Intense from 'intense-images';
 
 export default Component.extend({
   tagName: "",
@@ -49,6 +49,6 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     var elements = document.querySelectorAll('.collection-img');
-    Intense(elements)
+    //Intense(elements)
   }
 });
